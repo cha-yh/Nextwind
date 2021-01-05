@@ -22,7 +22,13 @@ export default function Home() {
                         </li>
                         <li className="mx-2">
                             <Link activeClass="text-green-500" to="testid3" spy={true} smooth={true} offset={-70} duration={200}>
-                                menu 3
+                                cards
+                            </Link>
+                        </li>
+
+                        <li className="mx-2">
+                            <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={-70} duration={200}>
+                                contanct
                             </Link>
                         </li>
                     </ul>
@@ -90,6 +96,19 @@ export default function Home() {
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
                         </ul>
+                    </div>
+                </Element>
+
+                {/* contact section */}
+                <Element className="flex flex-col items-center justify-center" id="contact-section">
+                    <div className="w-96">
+                        <h2 className="text-3xl mb-8 text-center">CONTACT</h2>
+                        <h3 className="text-2xl mb-4">Next wind</h3>
+                        <address className="mb-4">
+                            <span className="not-italic font-bold">Address:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, dolores!
+                        </address>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p>email@gmail.com</p>
                     </div>
                 </Element>
             </div>
