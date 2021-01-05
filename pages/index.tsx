@@ -101,14 +101,19 @@ export default function Home() {
 
                 {/* contact section */}
                 <Element className="flex flex-col items-center justify-center" id="contact-section">
-                    <div className="w-96">
-                        <h2 className="text-3xl mb-8 text-center">CONTACT</h2>
-                        <h3 className="text-2xl mb-4">Next wind</h3>
-                        <address className="mb-4">
-                            <span className="not-italic font-bold">Address:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, dolores!
-                        </address>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <p>email@gmail.com</p>
+                    <h2 className="text-3xl mb-16 text-center">CONTACT</h2>
+                    <div className="flex justify-between">
+                        <div className="mx-2 flex-1 max-w-sm">
+                            <h3 className="text-2xl mb-4">Next wind</h3>
+                            <address className="mb-4">
+                                <span className="not-italic font-bold">Address:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, dolores!
+                            </address>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <p>email@gmail.com</p>
+                        </div>
+                        <div className="mx-2 flex-1">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.2624446314835!2d126.94931371558664!3d37.47813273694335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f8a349ded25%3A0xe009a341d69d0885!2z6rSA7JWF6rWs7LKt!5e0!3m2!1sko!2skr!4v1609845726909!5m2!1sko!2skr" width="384" height="400" frameBorder="0" style={{border:0}} allowFullScreen aria-hidden="false" tabIndex={0}></iframe>
+                        </div>
                     </div>
                 </Element>
             </div>
