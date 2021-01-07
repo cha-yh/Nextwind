@@ -37,23 +37,23 @@ export default function Home() {
                     
                     <ul className="flex">
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={-80} duration={200}>
+                            <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={-100} duration={200}>
                                 menu 1
                             </Link>
                         </li>
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="testid2" spy={true} smooth={true} offset={-80} duration={200}>
+                            <Link activeClass="text-green-500" to="testid2" spy={true} smooth={true} offset={-100} duration={200}>
                                 menu 2
                             </Link>
                         </li>
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="testid3" spy={true} smooth={true} offset={-80} duration={200}>
+                            <Link activeClass="text-green-500" to="testid3" spy={true} smooth={true} offset={-100} duration={200}>
                                 cards
                             </Link>
                         </li>
 
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={-80} duration={200}>
+                            <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={-100} duration={200}>
                                 contanct
                             </Link>
                         </li>
@@ -151,8 +151,21 @@ export default function Home() {
                     </div>
                 </Element>
             </div>
-            <footer className="w-full h-60 mb-96">
+            <footer className="w-full py-20 bg-gray-100 mt-20">
+                <div className="container m-auto">
+                    <div className="flex flex-col items-center justify-center">
+                        <h3 className="text-3xl font-bold mb-4">Nextwind</h3>
 
+                        {/* icons */}
+                        <div className="flex mb-4">
+                            <img src="/facebook.png" alt="facebook" className="h-5 mx-2"/>
+                            <img src="/instagram.png" alt="instagram" className="h-5 mx-2"/>
+                            <img src="/twitter.png" alt="twitter" className="h-5 mx-2"/>
+                        </div>
+
+                        <p className="text-sm">© Copyright - Nextwind 2021</p>
+                    </div>
+                </div>
             </footer>
         </div>
     )
