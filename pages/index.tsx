@@ -37,18 +37,18 @@ export default function Home() {
                     
                     <ul className="flex">
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={-100} duration={200}>
+                            <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={0} duration={200}>
                                 menu 1
                             </Link>
                         </li>
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="card-section" spy={true} smooth={true} offset={-100} duration={200}>
+                            <Link activeClass="text-green-500" to="card-section" spy={true} smooth={true} offset={0} duration={200}>
                                 cards
                             </Link>
                         </li>
 
                         <li className="mx-2">
-                            <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={-100} duration={200}>
+                            <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={0} duration={200}>
                                 contanct
                             </Link>
                         </li>
