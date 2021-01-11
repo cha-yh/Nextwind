@@ -29,35 +29,38 @@ export default function Home() {
     }, [prePageY])
     return (
         <div>
-            <header className={`w-full fixed top-0 z-10 bg-white`}>
-                <div className="flex justify-between items-center container mx-auto">
-                    <Link activeClass="" to="section1" spy={true} smooth={true} offset={-60} duration={200}>
-                        <img src="/nextwind_icon.png" alt="" className="w-10 m-3"/>
-                    </Link>
-                    
-                    <ul className="flex">
-                        <li className="mx-2">
-                            <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={0} duration={200}>
-                                menu 1
-                            </Link>
-                        </li>
-                        <li className="mx-2">
-                            <Link activeClass="text-green-500" to="card-section" spy={true} smooth={true} offset={0} duration={200}>
-                                cards
-                            </Link>
-                        </li>
+            <nav className={`w-full h-14 sticky top-0 z-10`}>
+                <div className="w-full absolute top-0 left-0">
+                    {/* background */}
+                    <div className="w-full h-full absolute bg-white z-10" />
 
-                        <li className="mx-2">
-                            <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={0} duration={200}>
-                                contanct
-                            </Link>
-                        </li>
-                    </ul>
+                    {/* nav contents */}
+                    <div className="relative flex justify-between items-center container mx-auto z-20">
+                        <Link activeClass="" to="section1" spy={true} smooth={true} offset={-60} duration={200}>
+                            <img src="/nextwind_icon.png" alt="" className="w-8 m-3"/>
+                        </Link>
+                        
+                        <ul className="flex">
+                            <li className="mx-2">
+                                <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={0} duration={200}>
+                                    menu 1
+                                </Link>
+                            </li>
+                            <li className="mx-2">
+                                <Link activeClass="text-green-500" to="card-section" spy={true} smooth={true} offset={0} duration={200}>
+                                    cards
+                                </Link>
+                            </li>
+
+                            <li className="mx-2">
+                                <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={0} duration={200}>
+                                    contanct
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </header>
-
-            {/* header dummy for space */}
-            <div className="" style={{height: "60px"}}/>
+            </nav>
 
             {/* scroll top button */}
             <button
@@ -68,7 +71,7 @@ export default function Home() {
             </button>
 
             <div className="">
-                <Element id="section1" className="relative" style={{height: 'calc(100vh - 60px)'}}>
+                <Element id="section1" className="relative" style={{height: 'calc(100vh - 64px)'}}>
                     <div
                         className="w-full h-full bg-cover bg-center"
                         style={{backgroundImage: 'url(https://images.unsplash.com/photo-1609795386999-182f7609dc74?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)'}}
@@ -83,6 +86,16 @@ export default function Home() {
                     </div>
                 </Element>
             </div>
+
+            {/* matrix animation section */}
+            <section className="w-full bg-green-500" style={{height:'2000px'}}>
+                <div className="sticky w-full h-screen bg-red-500 top-0">
+                    <div className="w-full h-full flex items-center justify-center">
+                        <p className="text-white">hello world</p> 
+                    </div>
+                </div>
+            </section>
+
             <div className="container m-auto">
                 <Element className="flex flex-col items-center justify-center py-40 md:flex-row" id="testid1">
                     <img src="https://images.unsplash.com/photo-1609729015759-8f18dd32f562?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" alt="" className="object-cover h-96 flex-1 mx-2"/>
