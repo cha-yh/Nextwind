@@ -1,10 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {Link, Element} from 'react-scroll';
+
+import matrixStyle from '../styles/matrix.module.css';
+
+const THRESHOLD = 0.2;
 
 export default function Home() {
     const [isLower, setIsLower] = useState(false);
     const [prePageY, setPrePageY] = useState(0);
     const [scrollMoving, setScrollMoving] = useState<"UP"|"DOWN">("UP");
+
+    const stickyRef = useRef(null);
+    const sectionRef = useRef(null);
+
+    const [horizontalValue, setHorizontalValue] = useState(0);
+
     const scrollHandler = () => {
         const pageYOffset = window.pageYOffset;
         console.log('current page y', window.pageYOffset);
@@ -22,11 +32,65 @@ export default function Home() {
         return;
     }
     useEffect(() => {
-        document.addEventListener('scroll', scrollHandler);
-        return () => {
-            document.removeEventListener('scroll', scrollHandler);
+        // document.addEventListener('scroll', scrollHandler);
+        // return () => {
+        //     document.removeEventListener('scroll', scrollHandler);
+        // }
+        let observer;
+        if (stickyRef) {
+            console.log('stickyRef', stickyRef.current)
+            observer = new IntersectionObserver(handleIntersection, { threshold: THRESHOLD });
+            observer.observe(stickyRef.current);
         }
-    }, [prePageY])
+
+        return () => observer && observer.disconnect();
+
+
+    }, [
+        // prePageY
+        stickyRef
+    ])
+
+    const handleScrollInSection = () => {
+        const viewPortHeight = window.innerHeight;
+        const sectionHeight = sectionRef.current.getBoundingClientRect().height;
+        const startY = viewPortHeight * THRESHOLD;
+        const endY = sectionHeight + viewPortHeight * (1 - THRESHOLD);
+        const gap = endY - startY;
+        const currentY = window.pageYOffset;
+        const percent = Math.floor(currentY / gap * 100);
+        const isOdd = percent % 2 === 1;
+        if(percent > 50) {
+            // move to right
+            console.log('over')
+            if(isOdd) {
+                setHorizontalValue(100-percent+2);
+            }
+        } else {
+            // move to left
+            if(isOdd) {
+                setHorizontalValue(percent);
+            }
+        }
+
+        console.log(`currentY: ${currentY}, ${percent}%`);
+    }
+
+    const handleIntersection = ([ entry ]) => {
+        // console.log('entry', entry)
+        if (entry.isIntersecting) { // in
+            console.log('in')
+            const refPosition = sectionRef.current.getBoundingClientRect();
+            console.log('refPosition', refPosition);
+            console.log('offsetTop', sectionRef.current.offsetTop);
+            console.log('window.innerHeight', );
+            document.addEventListener('scroll', handleScrollInSection);
+        } else { // out
+            console.log('out')
+            document.removeEventListener('scroll', handleScrollInSection);
+        }
+      };
+
     return (
         <div>
             <nav className={`w-full h-14 sticky top-0 z-10`}>
@@ -71,14 +135,13 @@ export default function Home() {
             </button>
 
             <div className="">
-                <Element id="section1" className="relative" style={{height: 'calc(100vh - 64px)'}}>
+                <Element id="section1" className="relative" style={{height: 'calc(100vh - 56px)'}}>
                     <div
                         className="w-full h-full bg-cover bg-center"
                         style={{backgroundImage: 'url(https://images.unsplash.com/photo-1609795386999-182f7609dc74?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)'}}
                     />
 
-                    {/* dimmer */}
-                    <div className="w-full absolute top-0 left-0 opacity-50 bg-black" style={{height: 'calc(100vh - 60px)'}} />
+                    <div className="w-full absolute top-0 left-0 opacity-50 bg-black" style={{height: 'calc(100vh - 56px)'}} />
 
                     <div className="w-full h-full absolute top-0 left-0 flex flex-col items-center justify-center text-white" >
                         <h1 className="text-4xl mb-5">Title title</h1>
@@ -88,27 +151,38 @@ export default function Home() {
             </div>
 
             {/* matrix animation section */}
-            <section className="w-full bg-green-500" style={{height:'2000px'}}>
-                <div className="sticky w-full h-screen bg-red-500 top-0">
-                    <div className="w-full h-full flex items-center justify-center">
-                        <p className="text-white">hello world</p> 
+            <section className="w-full bg-green-500" style={{height:'4000px'}} ref={sectionRef}>
+                <div className="sticky w-full h-screen bg-red-500 top-0" ref={stickyRef}>
+                    <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
+                        <p
+                            className={matrixStyle.matrix + " text-white bg-green-500 absolute left-0"}
+                            style={{
+                                width:"3000px",
+                                background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
+                                transform: `matrix(1, 0, 0, 1, ${horizontalValue * 10}, 0)`
+                            }}
+                        >
+                            hello world: {horizontalValue}
+                        </p> 
                     </div>
                 </div>
             </section>
 
             <div className="container m-auto">
-                <Element className="flex flex-col items-center justify-center py-40 md:flex-row" id="testid1">
-                    <img src="https://images.unsplash.com/photo-1609729015759-8f18dd32f562?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" alt="" className="object-cover h-96 flex-1 mx-2"/>
+                <section>
+                    <Element className="flex flex-col items-center justify-center py-40 md:flex-row" id="testid1">
+                        <img src="https://images.unsplash.com/photo-1609729015759-8f18dd32f562?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" alt="" className="object-cover h-96 flex-1 mx-2"/>
 
-                    <div className="flex-1 mx-2 px-2">
-                        <h3 className="text-lg font-bold mb-5">Lorem ipsum dolor sit amet.</h3>
-                        <ul>
-                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
-                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
-                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
-                        </ul>
-                    </div>
-                </Element>
+                        <div className="flex-1 mx-2 px-2">
+                            <h3 className="text-lg font-bold mb-5">Lorem ipsum dolor sit amet.</h3>
+                            <ul>
+                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
+                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
+                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
+                            </ul>
+                        </div>
+                    </Element>
+                </section>
 
                 {/* card section */}
                 <Element className="container mx-auto flex items-center justify-center py-40" id="card-section">
@@ -131,27 +205,29 @@ export default function Home() {
                 </Element>
 
                 {/* contact section */}
-                <Element className="flex flex-col items-center justify-center py-40" id="contact-section">
-                    <h2 className="text-3xl mb-16 text-center">CONTACT</h2>
-                    <div className="flex flex-col justify-between md:flex-row">
-                        <div className="mx-2 flex-1 mb-10 md:max-w-sm">
-                            <h3 className="text-2xl mb-4">Next wind</h3>
-                            <address className="mb-4">
-                                <span className="not-italic font-bold">Address:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, dolores!
-                            </address>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p className="italic text-blue-700">email@gmail.com</p>
+                <section>
+                    <Element className="flex flex-col items-center justify-center py-40" id="contact-section" >
+                        <h2 className="text-3xl mb-16 text-center">CONTACT</h2>
+                        <div className="flex flex-col justify-between md:flex-row">
+                            <div className="mx-2 flex-1 mb-10 md:max-w-sm">
+                                <h3 className="text-2xl mb-4">Next wind</h3>
+                                <address className="mb-4">
+                                    <span className="not-italic font-bold">Address:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, dolores!
+                                </address>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <p className="italic text-blue-700">email@gmail.com</p>
+                            </div>
+                            <div className="mx-2 flex-1">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.2624446314835!2d126.94931371558664!3d37.47813273694335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f8a349ded25%3A0xe009a341d69d0885!2z6rSA7JWF6rWs7LKt!5e0!3m2!1sko!2skr!4v1609845726909!5m2!1sko!2skr"
+                                    width="100%" height="400"
+                                    frameBorder="0" style={{border:0}} allowFullScreen aria-hidden="false" tabIndex={0}
+                                >
+                                </iframe>
+                            </div>
                         </div>
-                        <div className="mx-2 flex-1">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.2624446314835!2d126.94931371558664!3d37.47813273694335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f8a349ded25%3A0xe009a341d69d0885!2z6rSA7JWF6rWs7LKt!5e0!3m2!1sko!2skr!4v1609845726909!5m2!1sko!2skr"
-                                width="100%" height="400"
-                                frameBorder="0" style={{border:0}} allowFullScreen aria-hidden="false" tabIndex={0}
-                            >
-                            </iframe>
-                        </div>
-                    </div>
-                </Element>
+                    </Element>
+                </section>
             </div>
             <footer className="w-full py-20 bg-gray-100">
                 <div className="container m-auto">
