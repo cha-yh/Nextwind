@@ -3,7 +3,7 @@ import {Link, Element} from 'react-scroll';
 
 import matrixStyle from '../styles/matrix.module.css';
 
-const THRESHOLD = 0.2;
+const THRESHOLD = 0.5;
 
 export default function Home() {
     const [isLower, setIsLower] = useState(false);
@@ -14,6 +14,8 @@ export default function Home() {
     const sectionRef = useRef(null);
 
     const [horizontalValue, setHorizontalValue] = useState(0);
+    const [imageSize, setImageSize] = useState(0.8);
+    const [textAnmValue, setTextAnmValue] = useState(0);
 
     const scrollHandler = () => {
         const pageYOffset = window.pageYOffset;
@@ -60,18 +62,32 @@ export default function Home() {
         const currentY = window.pageYOffset;
         const percent = Math.floor(currentY / gap * 100);
         const isOdd = percent % 2 === 1;
-        if(percent > 50) {
-            // move to right
-            console.log('over')
-            if(isOdd) {
-                setHorizontalValue(100-percent+2);
-            }
-        } else {
-            // move to left
-            if(isOdd) {
-                setHorizontalValue(percent);
-            }
+
+        // if(percent > 50) {
+        //     // move to right
+        //     console.log('over')
+        //     if(isOdd) {
+        //         setHorizontalValue(100-percent+2);
+        //     }
+        // } else {
+        //     // move to left
+        //     if(isOdd) {
+        //         setHorizontalValue(percent);
+        //     }
+        // }
+
+        // NOTE: set image size by percent
+        // NOTE: percent: 0 -> 20, size: 0.8 -> 1, one scroll(2%) 0.02 up
+        if( percent < 20 ) {
+            setImageSize(0.8 + percent * 0.01);
+        } else if( 51 < percent) { // 20~40
+            console.log('over 51')
+            setTextAnmValue((percent - 50) * 2) // 0.5 -> 1
         }
+
+
+
+        setHorizontalValue(percent);
 
         console.log(`currentY: ${currentY}, ${percent}%`);
     }
@@ -151,19 +167,29 @@ export default function Home() {
             </div>
 
             {/* matrix animation section */}
-            <section className="w-full bg-green-500" style={{height:'4000px'}} ref={sectionRef}>
-                <div className="sticky w-full h-screen bg-red-500 top-0" ref={stickyRef}>
+            <section className="w-full bg-black" style={{height:'1500px'}} ref={sectionRef}>
+                <div className="sticky w-full h-screen bg-black top-0" ref={stickyRef}>
                     <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
-                        <p
-                            className={matrixStyle.matrix + " text-white bg-green-500 absolute left-0"}
-                            style={{
-                                width:"3000px",
-                                background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
-                                transform: `matrix(1, 0, 0, 1, ${horizontalValue * 10}, 0)`
-                            }}
-                        >
-                            hello world: {horizontalValue}
-                        </p> 
+                        <div className="absolute flex items-center justify-center">
+                            <p
+                                className="w-80 text-white"
+                                style={{
+                                    transform: `matrix(1, 0, 0, 1, 0, ${-textAnmValue*0.5})`,
+                                    opacity: `${textAnmValue*0.01}`
+                                }}
+                            >
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam itaque, consequatur, quasi ipsam nesciunt neque sunt placeat sit est omnis quos fuga eum dignissimos voluptates reiciendis quidem dolores! Animi, atque!
+                            </p> 
+
+                            <img
+                                src="/black_bg_women.jpeg" alt=""
+                                className=" object-cover w-96 transition-all"
+                                style={{
+                                    transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${-0.2 * horizontalValue})`,
+                                    opacity: `${0.01 * horizontalValue * 2}`
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </section>
