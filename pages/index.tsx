@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {Link, Element} from 'react-scroll';
-
-import matrixStyle from '../styles/matrix.module.css';
+import SquareSection from './SquareSection';
 import TransformSection from './TransformSection';
-
-const THRESHOLD = 0.5;
 
 export default function Home() {
     const [isLower, setIsLower] = useState(false);
@@ -15,10 +12,10 @@ export default function Home() {
         const pageYOffset = window.pageYOffset;
 
         if(prePageY > pageYOffset) {
-            console.log('up')
+            // console.log('up')
             setScrollMoving("UP");
         } else {
-            console.log('down')
+            // console.log('down')
             setScrollMoving("DOWN");
         }
         setPrePageY(pageYOffset);
@@ -33,8 +30,6 @@ export default function Home() {
     }, [
         prePageY
     ])
-
-    
 
     return (
         <div>
@@ -122,7 +117,11 @@ export default function Home() {
                     </div>
                 </div>
             </section> */}
+            <div className="w-full bg-green-500" style={{height:'1350px '}}>
+
+            </div>
             <TransformSection />
+            <SquareSection />
 
             <div className="container m-auto">
                 <section>
