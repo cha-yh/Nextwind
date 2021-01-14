@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {Link, Element} from 'react-scroll';
 
 import matrixStyle from '../styles/matrix.module.css';
+import TransformSection from './TransformSection';
 
 const THRESHOLD = 0.5;
 
@@ -10,17 +11,8 @@ export default function Home() {
     const [prePageY, setPrePageY] = useState(0);
     const [scrollMoving, setScrollMoving] = useState<"UP"|"DOWN">("UP");
 
-    const stickyRef = useRef(null);
-    const sectionRef = useRef(null);
-
-    const [horizontalValue, setHorizontalValue] = useState(0);
-    const [imageSize, setImageSize] = useState(0.8);
-    const [textAnmValue, setTextAnmValue] = useState(0);
-
     const scrollHandler = () => {
         const pageYOffset = window.pageYOffset;
-        console.log('current page y', window.pageYOffset);
-        console.log('pre page y', prePageY);
 
         if(prePageY > pageYOffset) {
             console.log('up')
@@ -34,78 +26,15 @@ export default function Home() {
         return;
     }
     useEffect(() => {
-        // document.addEventListener('scroll', scrollHandler);
-        // return () => {
-        //     document.removeEventListener('scroll', scrollHandler);
-        // }
-        let observer;
-        if (stickyRef) {
-            console.log('stickyRef', stickyRef.current)
-            observer = new IntersectionObserver(handleIntersection, { threshold: THRESHOLD });
-            observer.observe(stickyRef.current);
+        document.addEventListener('scroll', scrollHandler);
+        return () => {
+            document.removeEventListener('scroll', scrollHandler);
         }
-
-        return () => observer && observer.disconnect();
-
-
     }, [
-        // prePageY
-        stickyRef
+        prePageY
     ])
 
-    const handleScrollInSection = () => {
-        const viewPortHeight = window.innerHeight;
-        const sectionHeight = sectionRef.current.getBoundingClientRect().height;
-        const startY = viewPortHeight * THRESHOLD;
-        const endY = sectionHeight + viewPortHeight * (1 - THRESHOLD);
-        const gap = endY - startY;
-        const currentY = window.pageYOffset;
-        const percent = Math.floor(currentY / gap * 100);
-        const isOdd = percent % 2 === 1;
-
-        // if(percent > 50) {
-        //     // move to right
-        //     console.log('over')
-        //     if(isOdd) {
-        //         setHorizontalValue(100-percent+2);
-        //     }
-        // } else {
-        //     // move to left
-        //     if(isOdd) {
-        //         setHorizontalValue(percent);
-        //     }
-        // }
-
-        // NOTE: set image size by percent
-        // NOTE: percent: 0 -> 20, size: 0.8 -> 1, one scroll(2%) 0.02 up
-        if( percent < 20 ) {
-            setImageSize(0.8 + percent * 0.01);
-        } else if( 51 < percent) { // 20~40
-            console.log('over 51')
-            setTextAnmValue((percent - 50) * 2) // 0.5 -> 1
-        }
-
-
-
-        setHorizontalValue(percent);
-
-        console.log(`currentY: ${currentY}, ${percent}%`);
-    }
-
-    const handleIntersection = ([ entry ]) => {
-        // console.log('entry', entry)
-        if (entry.isIntersecting) { // in
-            console.log('in')
-            const refPosition = sectionRef.current.getBoundingClientRect();
-            console.log('refPosition', refPosition);
-            console.log('offsetTop', sectionRef.current.offsetTop);
-            console.log('window.innerHeight', );
-            document.addEventListener('scroll', handleScrollInSection);
-        } else { // out
-            console.log('out')
-            document.removeEventListener('scroll', handleScrollInSection);
-        }
-      };
+    
 
     return (
         <div>
@@ -167,7 +96,7 @@ export default function Home() {
             </div>
 
             {/* matrix animation section */}
-            <section className="w-full bg-black" style={{height:'1500px'}} ref={sectionRef}>
+            {/* <section className="w-full bg-black" style={{height:'1500px'}} ref={sectionRef}>
                 <div className="sticky w-full h-screen bg-black top-0" ref={stickyRef}>
                     <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
                         <div className="absolute flex items-center justify-center">
@@ -192,7 +121,8 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
+            <TransformSection />
 
             <div className="container m-auto">
                 <section>
