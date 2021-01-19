@@ -49,6 +49,7 @@ export default function SquareSection() {
         <ScrollTransformWrapper
             ref={wrapperRef}
             height='100vh'
+            bgColor="black"
         >
             <div className="w-full h-full flex items-center justify-center ">
                 <div className="absolute flex flex-col items-center justify-center">

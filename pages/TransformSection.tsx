@@ -34,6 +34,7 @@ export default function TransformSection2() {
         <ScrollTransformWrapper
             ref={wrapperRef}
             height='100vh'
+            bgColor="black"
         >
             <div className="w-full h-full flex items-center justify-center ">
                 <div className="absolute flex items-center justify-center">
