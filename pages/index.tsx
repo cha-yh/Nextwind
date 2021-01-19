@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {Link, Element} from 'react-scroll';
+import CardSection from './CardSection';
+import PicTextSection from './PicTextSection';
 import SquareSection from './SquareSection';
 import TransformSection from './TransformSection';
 
@@ -89,75 +91,12 @@ export default function Home() {
                     </div>
                 </Element>
             </div>
-
-            {/* matrix animation section */}
-            {/* <section className="w-full bg-black" style={{height:'1500px'}} ref={sectionRef}>
-                <div className="sticky w-full h-screen bg-black top-0" ref={stickyRef}>
-                    <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
-                        <div className="absolute flex items-center justify-center">
-                            <p
-                                className="w-80 text-white"
-                                style={{
-                                    transform: `matrix(1, 0, 0, 1, 0, ${-textAnmValue*0.5})`,
-                                    opacity: `${textAnmValue*0.01}`
-                                }}
-                            >
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam itaque, consequatur, quasi ipsam nesciunt neque sunt placeat sit est omnis quos fuga eum dignissimos voluptates reiciendis quidem dolores! Animi, atque!
-                            </p> 
-
-                            <img
-                                src="/black_bg_women.jpeg" alt=""
-                                className=" object-cover w-96 transition-all"
-                                style={{
-                                    transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${-0.2 * horizontalValue})`,
-                                    opacity: `${0.01 * horizontalValue * 2}`
-                                }}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-            <div className="w-full bg-green-500" style={{height:'1350px '}}>
-
-            </div>
             <TransformSection />
             <SquareSection />
-
-            <div className="container m-auto">
-                <section>
-                    <Element className="flex flex-col items-center justify-center py-40 md:flex-row" id="testid1">
-                        <img src="https://images.unsplash.com/photo-1609729015759-8f18dd32f562?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" alt="" className="object-cover h-96 flex-1 mx-2"/>
-
-                        <div className="flex-1 mx-2 px-2">
-                            <h3 className="text-lg font-bold mb-5">Lorem ipsum dolor sit amet.</h3>
-                            <ul>
-                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
-                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
-                                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
-                            </ul>
-                        </div>
-                    </Element>
-                </section>
-
-                {/* card section */}
-                <Element className="container mx-auto flex items-center justify-center py-40" id="card-section">
-                    <div className="flex flex-col justify-between w-full md:flex-row">
-                        {[
-                            {imgUrl: "https://images.unsplash.com/photo-1609767500458-d2a133f61cab?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80", title: "rabit", contents: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, similique."},
-                            {imgUrl: "https://images.unsplash.com/photo-1609770242416-21d590c2a157?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80", title: "car", contents: "Lorem ipsum dolor sit, amet consectetur adipisicing."},
-                            {imgUrl: "https://images.unsplash.com/photo-1609700731241-d4b42fa1f483?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80", title: "snow", contents: "Lorem ipsum dolor sit, amet consectetur adipisicing elit."},
-                        ].map((item, index) => (
-                            <div className="w-full mb-20 md:w-56 lg:w-80 xl:w-96" key={index}>
-                                <img src={item.imgUrl} alt="" className="w-full h-96 object-cover md:w-56 lg:w-80 xl:w-96 "/>
-                                <div className="px-2 w-full">
-                                    <h5 className="text-lg font-bold">{item.title}</h5>
-                                    <p>{item.contents}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    
-                </Element>
+            <PicTextSection />
+            <CardSection />
+             
+            <div className="container m-auto">               
 
                 {/* contact section */}
                 <section>
