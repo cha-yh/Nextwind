@@ -7,41 +7,49 @@ export default function TransformSection2() {
     
     const [percent] = useScrollPercent(wrapperRef);
 
-    const [horizontalValue, setHorizontalValue] = useState(0);
+    const [imgageHorizontal, setImageHorizontal] = useState(0);
     const [imageSize, setImageSize] = useState(0.8);
+    const [imageOpacity, setImageOpacity] = useState(0);
     const [textOpacity, setTextOpacity] = useState(0);
-    const [textAnmValue, setTextAnmValue] = useState(0);
+    const [textHorizontal, setTextHorizontal] = useState(0);
+
+    const getCalculatedValueByPercent = (start, end, percent, min = 0, max = 1) => {
+        const diff = end - start;
+        const x = (max-min) / diff;
+        const calculatedValue = min + x * (percent - start);
+        return calculatedValue < min
+            ? min
+            : calculatedValue > max
+                ? max
+                : calculatedValue;
+        
+    }
 
     useEffect(() => {
-        // NOTE: set image size by percent
-        // NOTE: percent: 0 -> 20, size: 0.8 -> 1, one scroll(2%) 0.02 up
-        
-        // 50 -> 1 0.02 * 50
-        setTextOpacity(0.02 * percent);
-        if( percent < 20 ) {
-            setImageSize(0.8 + percent * 0.01);
-        } else if( 51 < percent) {
-            console.log('over 51')
-            setTextAnmValue((percent - 50) * 2) // 0.5 -> 1
-        }
 
-        setHorizontalValue(percent);
+        const textOpct = getCalculatedValueByPercent(0, 40, percent);
+        setTextOpacity(textOpct);
+        setTextHorizontal(getCalculatedValueByPercent(0, 50, percent, -100, 0));
 
-        // console.log(`currentY: ${percent}%`);
+        setImageSize(getCalculatedValueByPercent(0, 20, percent, 0.8));
+        setImageOpacity(getCalculatedValueByPercent(0, 20, percent));
+        setImageHorizontal(getCalculatedValueByPercent(0, 20, percent, -10, 0))
+
+        console.log(`currentY: ${percent}%`);
     }, [percent])
     
     return (
         <ScrollTransformWrapper
             ref={wrapperRef}
-            height='100vh'
+            height='130vh'
             bgColor="black"
         >
             <div className="w-full h-full flex items-center justify-center ">
                 <div className="absolute flex items-center justify-center">
                     <p
-                        className="w-80 text-white"
+                        className="w-80 text-white transition-all duration-500"
                         style={{
-                            transform: `matrix(1, 0, 0, 1, 0, ${-textAnmValue*0.5})`,
+                            transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal * -1})`,
                             opacity: `${textOpacity}`
                         }}
                     >
@@ -50,10 +58,10 @@ export default function TransformSection2() {
 
                     <img
                         src="/black_bg_women.jpeg" alt=""
-                        className=" object-cover w-96 transition-all"
+                        className=" object-cover w-96 transition-all duration-500"
                         style={{
-                            transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${-0.2 * horizontalValue})`,
-                            opacity: `${0.01 * horizontalValue * 1.5}`
+                            transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${imgageHorizontal * -1})`,
+                            opacity: imageOpacity
                         }}
                     />
                 </div>
