@@ -55,7 +55,7 @@ export default function CardSection() {
                             return (
                                 <div className="w-full mb-20 md:w-56 lg:w-80 xl:w-96" key={index}>
                                     <img
-                                        src={item.imgUrl} alt="" className="w-full h-96 object-cover md:w-56 lg:w-80 xl:w-96"
+                                        src={item.imgUrl} alt="" className="w-full h-96 object-cover md:w-56 lg:w-80 xl:w-96 transition-opacity duration-500"
                                         style={{
                                             // transform: `matrix(1, 0, 0, 1, 0, ${-50 + 30 * img})`,
                                             opacity: img

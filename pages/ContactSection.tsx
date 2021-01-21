@@ -44,7 +44,7 @@ export default function ContactSection() {
             >
                 <Element className="container m-auto text-white flex flex-col items-center justify-center py-40" id="contact-section" >
                     <h2
-                        className="text-3xl mb-16 text-center"
+                        className="text-3xl mb-16 text-center transition-transform"
                         style={{transform:`matrix(${titleSize}, 0, 0, ${titleSize}, 0, 0)`}}
                     >
                         CONTACT
@@ -52,7 +52,7 @@ export default function ContactSection() {
 
                     <div className="flex flex-col justify-between md:flex-row">
                         <div 
-                            className="mx-2 flex-1 mb-10 md:max-w-sm"
+                            className="mx-2 flex-1 mb-10 md:max-w-sm transition-opacity duration-1000"
                             style={{opacity: contentsOpct}}
                         >
                             <h3 className="text-2xl mb-4">Next wind</h3>
@@ -63,7 +63,7 @@ export default function ContactSection() {
                             <p className="italic text-blue-700">email@gmail.com</p>
                         </div>
                         <div 
-                            className="mx-2 flex-1"
+                            className="mx-2 flex-1 transition-opacity duration-1000"
                             style={{opacity: mapOpct}}
                         >
                             <iframe
