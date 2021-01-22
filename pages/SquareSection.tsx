@@ -11,10 +11,10 @@ export default function SquareSection() {
     const [percent] = useScrollPercent(wrapperRef);
 
     const initGridValue = [
-        {w:3, h: 3, x:-550, y:-517},
-        {w:1.5, h: 1.5, x:533, y:-542},
-        {w:2, h: 2, x:-555, y:589},
-        {w:2.5, h: 2.5, x:534, y:505},
+        {w:3, h: 3, x:-450, y:-517},
+        {w:1.5, h: 1.5, x:533, y:-642},
+        {w:2, h: 2, x:-655, y:589},
+        {w:2.5, h: 2.5, x:534, y:305},
     ]
     const [gridValue, setGridValue] = useState(initGridValue);
 
@@ -42,34 +42,35 @@ export default function SquareSection() {
     }
     useEffect(() => {
         let temp = [...gridValue];  
-        setTextOpacity(getCalculatedValueByPercent(50, 60, percent, -1, 0) * -1);
-        setTextHorizontal(getCalculatedValueByPercent(50, 60, percent, 0, 200) * -1);
-        setDimmerOpacity(getCalculatedValueByPercent(50, 60, percent, -0.4, 0) * -1);
-        setWholeSize(getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1);
+        setTextOpacity(getCalculatedValueByPercent(50, 65, percent, -1, 0) * -1);
+        setTextHorizontal(getCalculatedValueByPercent(50, 65, percent, 0, 200) * -1);
+        setDimmerOpacity(getCalculatedValueByPercent(50, 65, percent, -0.4, 0) * -1);
+
+        // setWholeSize(getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1);
 
         temp = initGridValue.map(grid => {
             return {
-                w: getCalculatedValueByPercent(65, 75, percent, -1 * grid.w, -1) * -1,
-                h: getCalculatedValueByPercent(65, 75, percent, -1 * grid.h, -1) * -1,
+                w: getCalculatedValueByPercent(58, 75, percent, -1 * grid.w, -1) * -1,
+                h: getCalculatedValueByPercent(58, 75, percent, -1 * grid.h, -1) * -1,
                 x: grid.x < 0 
-                    ? getCalculatedValueByPercent(65, 75, percent, grid.x, 0)
-                    : getCalculatedValueByPercent(65, 75, percent, -1 * grid.x, 0) * -1,
+                    ? getCalculatedValueByPercent(58, 75, percent, grid.x, 0)
+                    : getCalculatedValueByPercent(58, 75, percent, -1 * grid.x, 0) * -1,
                 y: grid.y < 0
-                    ? getCalculatedValueByPercent(65, 75, percent, grid.y, 0)
-                    : getCalculatedValueByPercent(65, 75, percent, -1 * grid.y, 0) * -1,
+                    ? getCalculatedValueByPercent(58, 75, percent, grid.y, 0)
+                    : getCalculatedValueByPercent(58, 75, percent, -1 * grid.y, 0) * -1,
             }
         })
         setGridValue(temp);
 
         requestAnimationFrame(() => upScaling(percent))
         
-        setTextOpacity2(getCalculatedValueByPercent(75, 85, percent));
+        setTextOpacity2(getCalculatedValueByPercent(70, 80, percent));
 
     }, [percent])
     return (
         <ScrollTransformWrapper
             ref={wrapperRef}
-            height='200vh'
+            height='150vh'
             bgColor="black"
         >
             <div className="w-full h-full flex items-center justify-center ">
