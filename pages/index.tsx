@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {Link, Element} from 'react-scroll';
 import CardSection from './CardSection';
 import ContactSection from './ContactSection';
+import HeroSection from './HeroSection';
 import PicTextSection from './PicTextSection';
 import SquareSection from './SquareSection';
 import TransformSection from './TransformSection';
@@ -35,16 +36,16 @@ export default function Home() {
     ])
 
     return (
-        <div>
+        <div className="bg-black">
             <nav className={`w-full h-14 sticky top-0 z-10`}>
                 <div className="w-full absolute top-0 left-0">
                     {/* background */}
-                    <div className="w-full h-full absolute bg-white z-10" />
+                    <div className="w-full h-full absolute bg-gray-800 opacity-70 z-10" />
 
                     {/* nav contents */}
-                    <div className="relative flex justify-between items-center container mx-auto z-20">
+                    <div className="relative text-white flex justify-between items-center container mx-auto z-20">
                         <Link activeClass="" to="section1" spy={true} smooth={true} offset={-60} duration={200}>
-                            <img src="/nextwind_icon.png" alt="" className="w-8 m-3"/>
+                            <img src="/nextwind_icon_white.svg" alt="" className="h-10 m-2"/>
                         </Link>
                         
                         <ul className="flex">
@@ -77,21 +78,7 @@ export default function Home() {
                 TOP
             </button>
 
-            <div className="">
-                <Element id="section1" className="relative" style={{height: 'calc(100vh - 56px)'}}>
-                    <div
-                        className="w-full h-full bg-cover bg-center"
-                        style={{backgroundImage: 'url(https://images.unsplash.com/photo-1609795386999-182f7609dc74?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)'}}
-                    />
-
-                    <div className="w-full absolute top-0 left-0 opacity-50 bg-black" style={{height: 'calc(100vh - 56px)'}} />
-
-                    <div className="w-full h-full absolute top-0 left-0 flex flex-col items-center justify-center text-white" >
-                        <h1 className="text-4xl mb-5">Title title</h1>
-                        <p className="text-center px-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, quisquam?</p>
-                    </div>
-                </Element>
-            </div>
+            <HeroSection />
             <TransformSection />
             <SquareSection />
             <PicTextSection />
