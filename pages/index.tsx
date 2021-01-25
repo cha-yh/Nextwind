@@ -3,6 +3,7 @@ import {Link, Element} from 'react-scroll';
 import CardSection from './CardSection';
 import ContactSection from './ContactSection';
 import HeroSection from './HeroSection';
+import Nav from './Nav';
 import PicTextSection from './PicTextSection';
 import SquareSection from './SquareSection';
 import TransformSection from './TransformSection';
@@ -37,38 +38,7 @@ export default function Home() {
 
     return (
         <div className="bg-black">
-            <nav className={`w-full h-14 sticky top-0 z-10`}>
-                <div className="w-full absolute top-0 left-0">
-                    {/* background */}
-                    <div className="w-full h-full absolute bg-gray-800 opacity-70 z-10" />
-
-                    {/* nav contents */}
-                    <div className="relative text-white flex justify-between items-center container mx-auto z-20">
-                        <Link activeClass="" to="section1" spy={true} smooth={true} offset={-60} duration={200}>
-                            <img src="/nextwind_icon_white.svg" alt="" className="h-10 m-2"/>
-                        </Link>
-                        
-                        <ul className="flex">
-                            <li className="mx-2">
-                                <Link activeClass="text-green-500" to="testid1" spy={true} smooth={true} offset={0} duration={200}>
-                                    menu 1
-                                </Link>
-                            </li>
-                            <li className="mx-2">
-                                <Link activeClass="text-green-500" to="card-section" spy={true} smooth={true} offset={0} duration={200}>
-                                    cards
-                                </Link>
-                            </li>
-
-                            <li className="mx-2">
-                                <Link activeClass="text-green-500" to="contact-section" spy={true} smooth={true} offset={0} duration={200}>
-                                    contanct
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <Nav />
 
             {/* scroll top button */}
             <button
