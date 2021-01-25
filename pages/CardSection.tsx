@@ -42,7 +42,7 @@ export default function CardSection() {
                 ref={ref}
                 isSticky={isSticky}
             >
-                <Element id="card-section">
+                <Element id="cards-section">
                     <div ref = {containerRef} className="container mx-auto flex items-center justify-center py-40" >
                         <div className="flex flex-col justify-between w-full md:flex-row">
                             {[
@@ -50,7 +50,7 @@ export default function CardSection() {
                                 {imgUrl: "https://images.unsplash.com/photo-1609770242416-21d590c2a157?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80", title: "car", contents: "Lorem ipsum dolor sit, amet consectetur adipisicing."},
                                 {imgUrl: "https://images.unsplash.com/photo-1609700731241-d4b42fa1f483?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80", title: "snow", contents: "Lorem ipsum dolor sit, amet consectetur adipisicing elit."},
                             ].map((item, index) => {
-                                const img = getCalculatedValueByPercent(index * 20, index * 20 + 20, percent)
+                                const img = getCalculatedValueByPercent(index * 15, index * 15 + 15, percent)
                                 const text = getCalculatedValueByPercent(index * 20 + 10, index * 20 + 20, percent)
                                 return (
                                     <div className="w-full mb-20 md:w-56 lg:w-80 xl:w-96" key={index}>

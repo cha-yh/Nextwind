@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import useScrollPercent from './useScrollPercent';
+import {Element} from 'react-scroll';
 
 export default function TransformSection2() {
     const wrapperRef = useRef<any>();
@@ -39,33 +40,37 @@ export default function TransformSection2() {
     }, [percent])
     
     return (
+        <section>
         <ScrollTransformWrapper
             ref={wrapperRef}
             height='130vh'
             bgColor="black"
         >
-            <div className="w-full h-full flex items-center justify-center ">
-                <div className="absolute flex items-center justify-center">
-                    <p
-                        className="w-80 text-white transition-all duration-500"
-                        style={{
-                            transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal * -1})`,
-                            opacity: `${textOpacity}`
-                        }}
-                    >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam itaque, consequatur, quasi ipsam nesciunt neque sunt placeat sit est omnis quos fuga eum dignissimos voluptates reiciendis quidem dolores! Animi, atque!
-                    </p> 
+            <Element id="textpic-section" className="h-full">
+                <div className="w-full h-full flex items-center justify-center ">
+                    <div className="absolute flex items-center justify-center">
+                        <p
+                            className="w-80 text-white transition-all duration-500"
+                            style={{
+                                transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal * -1})`,
+                                opacity: `${textOpacity}`
+                            }}
+                        >
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam itaque, consequatur, quasi ipsam nesciunt neque sunt placeat sit est omnis quos fuga eum dignissimos voluptates reiciendis quidem dolores! Animi, atque!
+                        </p> 
 
-                    <img
-                        src="/black_bg_women.jpeg" alt=""
-                        className=" object-cover w-96 transition-all duration-500"
-                        style={{
-                            transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${imgageHorizontal * -1})`,
-                            opacity: imageOpacity
-                        }}
-                    />
+                        <img
+                            src="/black_bg_women.jpeg" alt=""
+                            className=" object-cover w-96 transition-all duration-500"
+                            style={{
+                                transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${imgageHorizontal * -1})`,
+                                opacity: imageOpacity
+                            }}
+                        />
+                    </div>
                 </div>
-            </div>
+            </Element>
         </ScrollTransformWrapper>
+        </section>
     )
 }
