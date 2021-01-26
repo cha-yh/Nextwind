@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {Element} from 'react-scroll';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
 
 export default function CardSection() {
@@ -10,18 +11,6 @@ export default function CardSection() {
     const [isSticky, setIsSticky] = useState(true);
 
     const [percent] = useScrollPercent(ref);
-
-    const getCalculatedValueByPercent = (start, end, percent, min = 0) => {
-        const diff = end - start;
-        const x = (1-min) / diff;
-        const calculatedValue = min + x * (percent - start);
-        return calculatedValue < min
-            ? min
-            : calculatedValue > 1
-                ? 1
-                : calculatedValue;
-        
-    }
 
     useEffect(() => {
         const containerHeight = containerRef.current.clientHeight;

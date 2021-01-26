@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import {Element} from 'react-scroll';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
+
 const TITLE_INIT_SIZE = 1.5;
+
 export default function ContactSection() {
     const ref = useRef();
     const [percent] = useScrollPercent(ref);
@@ -22,18 +25,6 @@ export default function ContactSection() {
             
         }
     }, [percent])
-
-    const getCalculatedValueByPercent = (start, end, percent, min = 0) => {
-        const diff = end - start;
-        const x = (1-min) / diff;
-        const calculatedValue = min + x * (percent - start);
-        return calculatedValue < min
-            ? min
-            : calculatedValue > 1
-                ? 1
-                : calculatedValue;
-        
-    }
 
     return (
         <section className="">

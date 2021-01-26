@@ -3,6 +3,7 @@ import ScrollTransformWrapper from "./components/ScrollTransformWrapper";
 import useScrollPercent from "./useScrollPercent";
 import _ from 'lodash';
 import { Element } from 'react-scroll';
+import getCalculatedValueByPercent from "./lib/getCalculatedValueByPercent";
 
 export default function SquareSection() {
     const wrapperRef = useRef<any>();
@@ -18,18 +19,6 @@ export default function SquareSection() {
         { w: 2.5, h: 2.5, x: 534, y: 305 },
     ]
     const [gridValue, setGridValue] = useState(initGridValue);
-
-    const getCalculatedValueByPercent = (start, end, percent, min = 0, max = 1) => {
-        const diff = end - start;
-        const x = (max - min) / diff;
-        const calculatedValue = min + x * (percent - start);
-        return calculatedValue < min
-            ? min
-            : calculatedValue > max
-                ? max
-                : calculatedValue;
-
-    }
 
     const [wholeSize, setWholeSize] = useState(10);
     const [textOpacity, setTextOpacity] = useState(0);

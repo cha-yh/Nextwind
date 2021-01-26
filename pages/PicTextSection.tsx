@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Element } from 'react-scroll';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
 
 export default function PicTextSection() {
@@ -11,18 +12,6 @@ export default function PicTextSection() {
     const [imgOpacity, setImgOpacity] = useState(0.3);
     const [imgHorizontal, setImgHorizontal] = useState(0);
     const [textOpacity, setTextOpacity] = useState(0);
-
-    const getCalculatedValueByPercent = (start, end, percent, min = 0, max = 1) => {
-        const diff = end - start;
-        const x = (max - min) / diff;
-        const calculatedValue = min + x * (percent - start);
-        return calculatedValue < min
-            ? min
-            : calculatedValue > max
-                ? max
-                : calculatedValue;
-
-    }
 
     useEffect(() => {
         setTextOpacity(getCalculatedValueByPercent(20, 40, percent));
