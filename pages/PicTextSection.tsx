@@ -8,10 +8,10 @@ export default function PicTextSection() {
     const ref = useRef();
     const [percent] = useScrollPercent(ref);
 
-    const [imageSize, setImageSize] = useState(0.8);
-    const [imgOpacity, setImgOpacity] = useState(0.3);
+    const [imageSize, setImageSize] = useState(1);
+    const [imgOpacity, setImgOpacity] = useState(1);
     const [imgHorizontal, setImgHorizontal] = useState(0);
-    const [textOpacity, setTextOpacity] = useState(0);
+    const [textOpacity, setTextOpacity] = useState(1);
 
     useEffect(() => {
         setTextOpacity(getCalculatedValueByPercent(20, 40, percent));
@@ -26,11 +26,11 @@ export default function PicTextSection() {
             ref={ref}
             bgColor="black"
         >
-            <section className="container m-auto">
+            <div className="container m-auto">
                 <Element className="flex flex-col items-center justify-center py-40" id="pictext-section">
                     <img
                         src="https://images.unsplash.com/photo-1609729015759-8f18dd32f562?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" alt=""
-                        className="object-cover h-96 flex-1 mx-2 mb-10"
+                        className="object-cover h-96 flex-1 mx-2 mb-10 max-w-2xl"
                         style={{
                             transform: `matrix(${imageSize}, 0, 0, ${imageSize}, 0, ${imgHorizontal})`,
                             opacity: imgOpacity
@@ -51,7 +51,7 @@ export default function PicTextSection() {
                         </ul>
                     </div>
                 </Element>
-            </section>
+            </div>
         </ScrollTransformWrapper>
     )
 }

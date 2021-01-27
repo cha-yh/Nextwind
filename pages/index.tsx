@@ -48,12 +48,12 @@ export default function Home() {
                 TOP
             </button>
 
-            <HeroSection />
-            <TransformSection />
-            <SquareSection />
-            <PicTextSection />
-            <CardSection />
-            <ContactSection />
+            <section><HeroSection /></section>
+            <section className="mb-48 md:mb-0"><TransformSection /></section>
+            <section><SquareSection /></section>
+            <section><PicTextSection /></section>
+            <section><CardSection /></section>
+            <section><ContactSection /></section>
             <footer className="w-full py-20 bg-gray-100">
                 <div className="container m-auto">
                     <div className="flex flex-col items-center justify-center">

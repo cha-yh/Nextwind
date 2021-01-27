@@ -10,9 +10,9 @@ export default function TransformSection2() {
     const [percent] = useScrollPercent(wrapperRef);
 
     const [imgageHorizontal, setImageHorizontal] = useState(0);
-    const [imageSize, setImageSize] = useState(0.8);
-    const [imageOpacity, setImageOpacity] = useState(0);
-    const [textOpacity, setTextOpacity] = useState(0);
+    const [imageSize, setImageSize] = useState(1);
+    const [imageOpacity, setImageOpacity] = useState(1);
+    const [textOpacity, setTextOpacity] = useState(1);
     const [textHorizontal, setTextHorizontal] = useState(0);
 
     useEffect(() => {
@@ -29,7 +29,6 @@ export default function TransformSection2() {
     }, [percent])
     
     return (
-        <section>
         <ScrollTransformWrapper
             ref={wrapperRef}
             height='130vh'
@@ -37,7 +36,7 @@ export default function TransformSection2() {
         >
             <Element id="textpic-section" className="h-full">
                 <div className="w-full h-full flex items-center justify-center ">
-                    <div className="absolute flex items-center justify-center">
+                    <div className="md:absolute flex flex-col-reverse md:flex-row items-center justify-center">
                         <p
                             className="w-80 text-white transition-all duration-500"
                             style={{
@@ -60,6 +59,5 @@ export default function TransformSection2() {
                 </div>
             </Element>
         </ScrollTransformWrapper>
-        </section>
     )
 }
