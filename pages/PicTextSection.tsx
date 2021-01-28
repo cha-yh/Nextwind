@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Element } from 'react-scroll';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
@@ -27,7 +26,7 @@ export default function PicTextSection() {
             bgColor="black"
         >
             <div className="container m-auto">
-                <Element className="flex flex-col items-center justify-center py-40" id="pictext-section">
+                <div className="flex flex-col items-center justify-center py-40" >
                     <img
                         src="https://images.unsplash.com/photo-1609729015759-8f18dd32f562?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" alt=""
                         className="object-cover h-96 flex-1 mx-2 mb-10 max-w-2xl"
@@ -50,7 +49,7 @@ export default function PicTextSection() {
                             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim.</li>
                         </ul>
                     </div>
-                </Element>
+                </div>
             </div>
         </ScrollTransformWrapper>
     )

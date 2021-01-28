@@ -35,7 +35,7 @@ export default function SquareSection() {
         bgRef.current.style.transform = `matrix(${size}, 0, 0, ${size}, 0, 0)`
     }
     useEffect(() => {
-        if(window.innerWidth > 768) {
+        if (window.innerWidth > 768) {
 
             let temp = [...gridValue];
             setTextOpacity(getCalculatedValueByPercent(50, 65, percent, -1, 0) * -1);
@@ -61,8 +61,8 @@ export default function SquareSection() {
             requestAnimationFrame(() => upScaling(percent))
 
             setTextOpacity2(getCalculatedValueByPercent(70, 80, percent));
-        } 
-        
+        }
+
 
     }, [percent])
     return (
@@ -71,66 +71,64 @@ export default function SquareSection() {
             height='150vh'
             bgColor="black"
         >
-            <div className="h-full py-40">
-                
-                <div className="w-full h-full flex flex-col items-center justify-center ">
-                    <div
-                        className="m-auto mb-20 md:mb-52 mt-10 md:absolute z-20 text-white text-center"
-                        style={{
-                            transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal})`,
-                            opacity: textOpacity,
-                            width: '30%',
-                            minWidth: '320px'
 
+            <div className="w-full h-full flex flex-col items-center justify-center py-40">
+                <div
+                    className="m-auto mb-20 md:mb-52 mt-10 md:absolute z-20 text-white text-center"
+                    style={{
+                        transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal})`,
+                        opacity: textOpacity,
+                        width: '30%',
+                        minWidth: '320px'
+
+                    }}
+                >
+                    <h3 className="text-4xl mb-7">
+                        SQUARE
+                        </h3>
+                    <p className="text-lg">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum, vero, esse consequuntur placeat pariatur nostrum, nemo provident ea officia tenetur hic quo iure? Ratione molestias, nemo ipsam reprehenderit error dolorum?
+                        </p>
+                </div>
+
+                {/* dimmer */}
+                <div className="absolute z-10 w-screen h-screen bg-black" style={{ opacity: dimmerOpacity }} />
+
+                <div className="md:absolute flex flex-col items-center justify-cente">
+                    <div
+                        ref={bgRef}
+                        className="relative p-10 border border-gray-300"
+                        style={{
+                            // transform: `matrix(${wholeSize}, 0, 0, ${wholeSize}, 0, 0)`
                         }}
                     >
-                        <h3 className="text-4xl mb-7">
-                            SQUARE
-                        </h3>
-                        <p className="text-lg">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum, vero, esse consequuntur placeat pariatur nostrum, nemo provident ea officia tenetur hic quo iure? Ratione molestias, nemo ipsam reprehenderit error dolorum?
-                        </p>
-                    </div>
-
-                    {/* dimmer */}
-                    <div className="absolute z-10 w-screen h-screen bg-black" style={{ opacity: dimmerOpacity }} />
-                    
-                    <div className="md:absolute flex flex-col items-center justify-cente">
-                        <div
-                            ref={bgRef}
-                            className="relative p-10 border border-gray-300"
+                        <figure
+                            className="w-full h-full absolute top-0 left-0"
                             style={{
-                                // transform: `matrix(${wholeSize}, 0, 0, ${wholeSize}, 0, 0)`
+                                backgroundImage: 'url("/pattern.jpeg")',
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center center',
                             }}
                         >
-                            <figure
-                                className="w-full h-full absolute top-0 left-0"
-                                style={{
-                                    backgroundImage: 'url("/pattern.jpeg")',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: 'center center',
-                                }}
-                            >
 
-                            </figure>
-                            <div className="grid grid-cols-2 grid-rows-2 gap-x-3 gap-y-4">
-                                <img src="/square1.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[0].w}, 0, 0, ${gridValue[0].h}, ${gridValue[0].x}, ${gridValue[0].y})` }} />
-                                <img src="/square2.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[1].w}, 0, 0, ${gridValue[1].h}, ${gridValue[1].x}, ${gridValue[1].y})` }} />
-                                <img src="/square3.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[2].w}, 0, 0, ${gridValue[2].h}, ${gridValue[2].x}, ${gridValue[2].y})` }} />
-                                <img src="/square4.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[3].w}, 0, 0, ${gridValue[3].h}, ${gridValue[3].x}, ${gridValue[3].y})` }} />
-                            </div>
+                        </figure>
+                        <div className="grid grid-cols-2 grid-rows-2 gap-x-3 gap-y-4">
+                            <img src="/square1.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[0].w}, 0, 0, ${gridValue[0].h}, ${gridValue[0].x}, ${gridValue[0].y})` }} />
+                            <img src="/square2.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[1].w}, 0, 0, ${gridValue[1].h}, ${gridValue[1].x}, ${gridValue[1].y})` }} />
+                            <img src="/square3.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[2].w}, 0, 0, ${gridValue[2].h}, ${gridValue[2].x}, ${gridValue[2].y})` }} />
+                            <img src="/square4.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[3].w}, 0, 0, ${gridValue[3].h}, ${gridValue[3].x}, ${gridValue[3].y})` }} />
                         </div>
-
-                        <p
-                            className="text-center text-white mt-10 w-96"
-                            style={{
-                                opacity: textOpacity2,
-                            }}
-                        >
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum, vero, esse consequuntur placeat pariatur nostrum, nemo provident ea officia tenetur hic quo iure? Ratione molestias, nemo ipsam reprehenderit error dolorum?
-                        </p>
                     </div>
+
+                    <p
+                        className="text-center text-white mt-10 w-96"
+                        style={{
+                            opacity: textOpacity2,
+                        }}
+                    >
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum, vero, esse consequuntur placeat pariatur nostrum, nemo provident ea officia tenetur hic quo iure? Ratione molestias, nemo ipsam reprehenderit error dolorum?
+                        </p>
                 </div>
             </div>
         </ScrollTransformWrapper>

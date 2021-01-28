@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Element } from 'react-scroll';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
@@ -32,7 +31,7 @@ export default function ContactSection() {
             bgColor="#0e0d0d"
             height="100vh"
         >
-            <Element className="container m-auto text-white flex flex-col items-center justify-center py-40" id="contact-section" >
+            <div className="container m-auto text-white flex flex-col items-center justify-center py-40" >
                 <h2
                     className="text-3xl mb-16 text-center transition-transform"
                     style={{ transform: `matrix(${titleSize}, 0, 0, ${titleSize}, 0, 0)` }}
@@ -64,7 +63,7 @@ export default function ContactSection() {
                         </iframe>
                     </div>
                 </div>
-            </Element>
+            </div>
 
         </ScrollTransformWrapper>
     )
