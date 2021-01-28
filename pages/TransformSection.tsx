@@ -34,7 +34,7 @@ export default function TransformSection2() {
             height='130vh'
             bgColor="black"
         >
-            <Element id="textpic-section" className="h-full">
+            <Element id="textpic-section" className="h-full py-40">
                 <div className="w-full h-full flex items-center justify-center ">
                     <div className="md:absolute flex flex-col-reverse md:flex-row items-center justify-center">
                         <p

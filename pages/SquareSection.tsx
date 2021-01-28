@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import ScrollTransformWrapper from "./components/ScrollTransformWrapper";
 import useScrollPercent from "./useScrollPercent";
 import _ from 'lodash';
-import { Element } from 'react-scroll';
 import getCalculatedValueByPercent from "./lib/getCalculatedValueByPercent";
 
 export default function SquareSection() {
@@ -36,30 +35,34 @@ export default function SquareSection() {
         bgRef.current.style.transform = `matrix(${size}, 0, 0, ${size}, 0, 0)`
     }
     useEffect(() => {
-        let temp = [...gridValue];
-        setTextOpacity(getCalculatedValueByPercent(50, 65, percent, -1, 0) * -1);
-        setTextHorizontal(getCalculatedValueByPercent(50, 65, percent, 0, 200) * -1);
-        setDimmerOpacity(getCalculatedValueByPercent(50, 65, percent, -0.4, 0) * -1);
+        if(window.innerWidth > 768) {
 
-        // setWholeSize(getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1);
+            let temp = [...gridValue];
+            setTextOpacity(getCalculatedValueByPercent(50, 65, percent, -1, 0) * -1);
+            setTextHorizontal(getCalculatedValueByPercent(50, 65, percent, 0, 200) * -1);
+            setDimmerOpacity(getCalculatedValueByPercent(50, 65, percent, -0.4, 0) * -1);
 
-        temp = initGridValue.map(grid => {
-            return {
-                w: getCalculatedValueByPercent(58, 75, percent, -1 * grid.w, -1) * -1,
-                h: getCalculatedValueByPercent(58, 75, percent, -1 * grid.h, -1) * -1,
-                x: grid.x < 0
-                    ? getCalculatedValueByPercent(58, 75, percent, grid.x, 0)
-                    : getCalculatedValueByPercent(58, 75, percent, -1 * grid.x, 0) * -1,
-                y: grid.y < 0
-                    ? getCalculatedValueByPercent(58, 75, percent, grid.y, 0)
-                    : getCalculatedValueByPercent(58, 75, percent, -1 * grid.y, 0) * -1,
-            }
-        })
-        setGridValue(temp);
+            // setWholeSize(getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1);
 
-        requestAnimationFrame(() => upScaling(percent))
+            temp = initGridValue.map(grid => {
+                return {
+                    w: getCalculatedValueByPercent(58, 75, percent, -1 * grid.w, -1) * -1,
+                    h: getCalculatedValueByPercent(58, 75, percent, -1 * grid.h, -1) * -1,
+                    x: grid.x < 0
+                        ? getCalculatedValueByPercent(58, 75, percent, grid.x, 0)
+                        : getCalculatedValueByPercent(58, 75, percent, -1 * grid.x, 0) * -1,
+                    y: grid.y < 0
+                        ? getCalculatedValueByPercent(58, 75, percent, grid.y, 0)
+                        : getCalculatedValueByPercent(58, 75, percent, -1 * grid.y, 0) * -1,
+                }
+            })
+            setGridValue(temp);
 
-        setTextOpacity2(getCalculatedValueByPercent(70, 80, percent));
+            requestAnimationFrame(() => upScaling(percent))
+
+            setTextOpacity2(getCalculatedValueByPercent(70, 80, percent));
+        } 
+        
 
     }, [percent])
     return (
@@ -68,10 +71,11 @@ export default function SquareSection() {
             height='150vh'
             bgColor="black"
         >
-            <Element id="square-section" className="h-full">
+            <div className="h-full py-40">
+                
                 <div className="w-full h-full flex flex-col items-center justify-center ">
                     <div
-                        className="m-auto mb-52 mt-10 md:absolute z-20 text-white text-center"
+                        className="m-auto mb-20 md:mb-52 mt-10 md:absolute z-20 text-white text-center"
                         style={{
                             transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal})`,
                             opacity: textOpacity,
@@ -128,7 +132,7 @@ export default function SquareSection() {
                         </p>
                     </div>
                 </div>
-            </Element>
+            </div>
         </ScrollTransformWrapper>
 
     )

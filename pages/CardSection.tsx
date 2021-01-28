@@ -8,11 +8,13 @@ export default function CardSection() {
     const ref = useRef();
     const containerRef = useRef<any>();
     const [wrapperHeight, setWrapperHeight] = useState('120vh');
+    const [isNarrow, setIsNarrow] = useState(true);
     const [isSticky, setIsSticky] = useState(true);
 
     const [percent] = useScrollPercent(ref);
 
     useEffect(() => {
+        setIsNarrow(window.innerWidth < 768);
         const containerHeight = containerRef.current.clientHeight;
         const viewportHeight = window.innerHeight;
         if (containerHeight > viewportHeight) {
@@ -46,10 +48,10 @@ export default function CardSection() {
                                         src={item.imgUrl} alt="" className="w-full h-96 object-cover md:w-56 lg:w-80 xl:w-96 transition-opacity duration-500"
                                         style={{
                                             // transform: `matrix(1, 0, 0, 1, 0, ${-50 + 30 * img})`,
-                                            opacity: percent == 0 ? 1 : img
+                                            opacity: isNarrow ? 1 : img
                                         }}
                                     />
-                                    <div className="px-2 w-full text-white" style={{ opacity: img }}>
+                                    <div className="px-2 w-full text-white" style={{ opacity: isNarrow ? 1 : img }}>
                                         <h5 className="text-lg font-bold">{item.title}</h5>
                                         <p>{item.contents}</p>
                                     </div>
