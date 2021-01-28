@@ -2,13 +2,13 @@ import {Link} from 'react-scroll';
 
 export default function Nav() {
     return (
-        <nav className={`w-full h-14 sticky top-0 z-10`}>
+        <nav className={`w-full h-14 sticky top-0 z-40`}>
             <div className="w-full absolute top-0 left-0">
                 {/* background */}
-                <div className="w-full h-full absolute bg-gray-800 opacity-70 z-10" />
+                <div className="w-full h-full absolute bg-gray-800 opacity-70 z-40" />
 
                 {/* nav contents */}
-                <div className="relative text-white flex justify-between items-center container mx-auto z-20">
+                <div className="relative text-white flex justify-between items-center container mx-auto z-50">
                     <Link
                         className="cursor-pointer"
                         activeClass="" to="section1" spy={true} smooth={true} offset={-60} duration={200}
