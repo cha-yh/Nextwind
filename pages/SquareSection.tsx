@@ -3,6 +3,8 @@ import ScrollTransformWrapper from "./components/ScrollTransformWrapper";
 import useScrollPercent from "./useScrollPercent";
 import _ from 'lodash';
 import getCalculatedValueByPercent from "./lib/getCalculatedValueByPercent";
+import PicTextSection from "./PicTextSection";
+import useWindowSize from "./useWindowResize";
 
 export default function SquareSection() {
     const wrapperRef = useRef<any>();
@@ -17,12 +19,14 @@ export default function SquareSection() {
         { w: 2, h: 2, x: -655, y: 589 },
         { w: 2.5, h: 2.5, x: 534, y: 305 },
     ]
-    const [gridValue, setGridValue] = useState([
+
+    const naturalGridValue = [
         { w: 1, h: 1, x: 0, y: 0 },
         { w: 1, h: 1, x: 0, y: 0 },
         { w: 1, h: 1, x: 0, y: 0 },
         { w: 1, h: 1, x: 0, y: 0 }
-    ]);
+    ]
+    const [gridValue, setGridValue] = useState(naturalGridValue);
 
     const [wholeSize, setWholeSize] = useState(10);
     const [textOpacity, setTextOpacity] = useState(1);
@@ -34,8 +38,9 @@ export default function SquareSection() {
         const size = getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1
         bgRef.current.style.transform = `matrix(${size}, 0, 0, ${size}, 0, 0)`
     }
+    const size = useWindowSize();
     useEffect(() => {
-        if (window.innerWidth > 768) {
+        if (size.width > 768) {
 
             let temp = [...gridValue];
             setTextOpacity(getCalculatedValueByPercent(50, 65, percent, -1, 0) * -1);
@@ -61,10 +66,17 @@ export default function SquareSection() {
             requestAnimationFrame(() => upScaling(percent))
 
             setTextOpacity2(getCalculatedValueByPercent(70, 80, percent));
+        } else {
+            bgRef.current.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
+            setGridValue(naturalGridValue);
+            setTextOpacity(1);
+            setTextHorizontal(0);
+            setDimmerOpacity(0);
+            setTextOpacity2(1);
         }
 
 
-    }, [percent])
+    }, [percent, size.width])
     return (
         <ScrollTransformWrapper
             ref={wrapperRef}

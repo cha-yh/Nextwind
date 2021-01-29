@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
+import useWindowSize from './useWindowResize';
 
 export default function PicTextSection() {
     const ref = useRef();
@@ -11,13 +12,22 @@ export default function PicTextSection() {
     const [imgOpacity, setImgOpacity] = useState(1);
     const [imgHorizontal, setImgHorizontal] = useState(0);
     const [textOpacity, setTextOpacity] = useState(1);
+    
+    const size = useWindowSize();
 
     useEffect(() => {
-        setTextOpacity(getCalculatedValueByPercent(20, 40, percent));
-        setImgOpacity(getCalculatedValueByPercent(0, 30, percent, 0.3));
-        setImageSize(getCalculatedValueByPercent(0, 20, percent, 0.8));
-        setImgHorizontal(getCalculatedValueByPercent(0, 30, percent, -100, 0) * -1);
-    }, [percent])
+        if(size.width > 768) {
+            setTextOpacity(getCalculatedValueByPercent(40, 60, percent));
+            setImgOpacity(getCalculatedValueByPercent(0, 30, percent, 0.2));
+            setImageSize(getCalculatedValueByPercent(0, 20, percent, 0.7));
+            setImgHorizontal(getCalculatedValueByPercent(0, 30, percent, -150, 0) * -1);
+        } else {
+            setTextOpacity(1)
+            setImgOpacity(1)
+            setImageSize(1)
+            setImgHorizontal(0)
+        }
+    }, [percent, size.width])
 
     return (
         <ScrollTransformWrapper

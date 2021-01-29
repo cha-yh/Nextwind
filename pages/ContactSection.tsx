@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
+import useWindowSize from './useWindowResize';
 
 const TITLE_INIT_SIZE = 1.5;
 
@@ -13,17 +14,22 @@ export default function ContactSection() {
     const [contentsOpct, setContentsOpct] = useState(0);
     const [mapOpct, setMapOpct] = useState(0);
 
-    useEffect(() => {
-        const weight1 = getCalculatedValueByPercent(0, 20, percent);
-        const weight2 = getCalculatedValueByPercent(10, 25, percent);
-        const weight3 = getCalculatedValueByPercent(25, 40, percent);
-        setTitleSize(TITLE_INIT_SIZE - weight1 * (TITLE_INIT_SIZE - 1));
-        setContentsOpct(weight2);
-        setMapOpct(weight3);
-        return () => {
+    const {width} = useWindowSize();
 
+    useEffect(() => {
+        if(width > 768) {
+            const weight1 = getCalculatedValueByPercent(0, 20, percent);
+            const weight2 = getCalculatedValueByPercent(10, 25, percent);
+            const weight3 = getCalculatedValueByPercent(25, 40, percent);
+            setTitleSize(TITLE_INIT_SIZE - weight1 * (TITLE_INIT_SIZE - 1));
+            setContentsOpct(weight2);
+            setMapOpct(weight3);
+        } else {
+            setTitleSize(1)
+            setContentsOpct(1)
+            setMapOpct(1)
         }
-    }, [percent])
+    }, [percent, width])
 
     return (
         <ScrollTransformWrapper

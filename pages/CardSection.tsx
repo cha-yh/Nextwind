@@ -2,34 +2,29 @@ import { useEffect, useRef, useState } from 'react';
 import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
+import useWindowSize from './useWindowResize';
 
 export default function CardSection() {
     const ref = useRef();
     const containerRef = useRef<any>();
-    const [wrapperHeight, setWrapperHeight] = useState('120vh');
     const [isNarrow, setIsNarrow] = useState(true);
-    const [isSticky, setIsSticky] = useState(true);
 
     const [percent] = useScrollPercent(ref);
+    
+    const size = useWindowSize();
 
     useEffect(() => {
-        setIsNarrow(window.innerWidth < 768);
-        const containerHeight = containerRef.current.clientHeight;
-        const viewportHeight = window.innerHeight;
-        if (containerHeight > viewportHeight) {
-            setWrapperHeight(`${containerHeight}px`)
-            setIsSticky(false);
+        if(size.width > 768) {
+            setIsNarrow(false);
         } else {
-            setWrapperHeight('120vh');
-            setIsSticky(true);
+            setIsNarrow(true)
         }
-    }, [])
+    }, [size.width])
     return (
         <ScrollTransformWrapper
             bgColor="black"
-            height={wrapperHeight}
+            height='120vh'
             ref={ref}
-            isSticky={isSticky}
         >
 
             <div ref={containerRef} className="container mx-auto flex items-center justify-center py-40" >

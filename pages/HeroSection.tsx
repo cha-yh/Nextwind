@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { Element } from 'react-scroll';
+import useWindowSize from './useWindowResize';
 
 const THRESHOLD = 0.5;
 
 export default function HeroSection() {
     const ref = useRef<any>();
+
+    const {width} = useWindowSize();
+
     useEffect(() => {
+
         let observer;
         if (ref) {
             observer = new IntersectionObserver(handleIntersection, { threshold: THRESHOLD });
@@ -15,10 +20,10 @@ export default function HeroSection() {
         return () => {
             return observer && observer.disconnect()
         };
-    }, [ref])
+    }, [ref, width])
 
     const handleIntersection = ([entry]) => {
-        if (entry.isIntersecting) { // in
+        if (entry.isIntersecting && width > 768) { // in, wide screen
             ref.current.play();
         } else { // out
             ref.current.pause();

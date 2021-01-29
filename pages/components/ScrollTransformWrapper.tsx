@@ -1,14 +1,15 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
+import useWindowSize from '../useWindowResize';
 
 const ScrollTransformWrapper = React.forwardRef(({height, bgColor, isSticky = true, children}:any, ref) => {
     const sectionRef = useRef();
     const stickyRef = useRef();
 
     const [sectionHeight, setSectionHeight] = useState(height);
-
+    const size = useWindowSize();
     useEffect(() => {
         setSectionHeight(window.innerWidth > 768 ? height : '100%');
-    }, [])
+    }, [size])
 
     useImperativeHandle(ref, () => ({
         get sectionWrapper() {
@@ -18,6 +19,7 @@ const ScrollTransformWrapper = React.forwardRef(({height, bgColor, isSticky = tr
             return stickyRef.current;
         }
     }));
+
     return (
         <div
             className="w-full"

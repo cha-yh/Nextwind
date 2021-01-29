@@ -3,6 +3,7 @@ import ScrollTransformWrapper from './components/ScrollTransformWrapper';
 import useScrollPercent from './useScrollPercent';
 import { Element } from 'react-scroll';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
+import useWindowSize from './useWindowResize';
 
 export default function TransformSection2() {
     const wrapperRef = useRef<any>();
@@ -15,18 +16,26 @@ export default function TransformSection2() {
     const [textOpacity, setTextOpacity] = useState(1);
     const [textHorizontal, setTextHorizontal] = useState(0);
 
+    const size = useWindowSize();
     useEffect(() => {
-
-        const textOpct = getCalculatedValueByPercent(0, 40, percent);
-        setTextOpacity(textOpct);
-        setTextHorizontal(getCalculatedValueByPercent(0, 50, percent, -100, 0));
-
-        setImageSize(getCalculatedValueByPercent(0, 20, percent, 0.8));
-        setImageOpacity(getCalculatedValueByPercent(0, 20, percent));
-        setImageHorizontal(getCalculatedValueByPercent(0, 20, percent, -10, 0))
-
-        console.log(`currentY: ${percent}%`);
-    }, [percent])
+        if(size.width > 768) {
+            const textOpct = getCalculatedValueByPercent(0, 40, percent);
+            setTextOpacity(textOpct);
+            setTextHorizontal(getCalculatedValueByPercent(0, 50, percent, -100, 0));
+    
+            setImageSize(getCalculatedValueByPercent(0, 20, percent, 0.8));
+            setImageOpacity(getCalculatedValueByPercent(0, 20, percent));
+            setImageHorizontal(getCalculatedValueByPercent(0, 20, percent, -10, 0));
+    
+            console.log(`currentY: ${percent}%`);
+        } else {
+            setTextOpacity(1);
+            setTextHorizontal(0);
+            setImageSize(1);
+            setImageOpacity(1);
+            setImageHorizontal(0);
+        }
+    }, [percent, size.width])
 
     return (
         <ScrollTransformWrapper
@@ -37,7 +46,7 @@ export default function TransformSection2() {
             <div className="w-full h-full flex items-center justify-center py-40">
                 <div className="md:absolute flex flex-col-reverse md:flex-row items-center justify-center">
                     <p
-                        className="w-80 text-white transition-all duration-500"
+                        className="w-80 mt-10 md:mt-0 text-white transition-all duration-500"
                         style={{
                             transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal * -1})`,
                             opacity: `${textOpacity}`
