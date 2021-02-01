@@ -1,9 +1,21 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useWindowSize from '../useWindowResize';
 
-const ScrollTransformWrapper = React.forwardRef(({height, bgColor, isSticky = true, children}:any, ref) => {
-    const sectionRef = useRef();
-    const stickyRef = useRef();
+export type ScrollTransformWrapperRefTypes = {
+    readonly sectionWrapper: HTMLDivElement;
+    readonly stickyWrapper: HTMLDivElement;
+};
+
+type Props = {
+    height: string;
+    bgColor: string;
+    children: React.ReactNode
+}
+type PropTypes = Props;
+
+const ScrollTransformWrapper = React.forwardRef<ScrollTransformWrapperRefTypes, PropTypes>(({height, bgColor, children}, ref) => {
+    const sectionRef = useRef<HTMLDivElement>();
+    const stickyRef = useRef<HTMLDivElement>();
 
     const [sectionHeight, setSectionHeight] = useState(height);
     const size = useWindowSize();
