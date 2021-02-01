@@ -5,7 +5,7 @@ import useWindowSize from './useWindowResize';
 const THRESHOLD = 0.5;
 
 export default function HeroSection() {
-    const ref = useRef<any>();
+    const ref = useRef<HTMLVideoElement>();
 
     const {width} = useWindowSize();
 

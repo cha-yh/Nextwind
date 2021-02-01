@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import ScrollTransformWrapper, { ScrollTransformWrapperRefTypes } from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
 import useWindowSize from './useWindowResize';
@@ -7,7 +7,7 @@ import useWindowSize from './useWindowResize';
 const TITLE_INIT_SIZE = 1.5;
 
 export default function ContactSection() {
-    const ref = useRef();
+    const ref = useRef<ScrollTransformWrapperRefTypes>();
     const [percent] = useScrollPercent(ref);
 
     const [titleSize, setTitleSize] = useState(TITLE_INIT_SIZE);

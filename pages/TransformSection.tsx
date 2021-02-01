@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import ScrollTransformWrapper, { ScrollTransformWrapperRefTypes } from './components/ScrollTransformWrapper';
 import useScrollPercent from './useScrollPercent';
 import { Element } from 'react-scroll';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useWindowSize from './useWindowResize';
 
 export default function TransformSection2() {
-    const wrapperRef = useRef<any>();
+    const wrapperRef = useRef<ScrollTransformWrapperRefTypes>();
 
     const [percent] = useScrollPercent(wrapperRef);
 

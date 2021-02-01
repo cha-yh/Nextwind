@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import ScrollTransformWrapper from "./components/ScrollTransformWrapper";
+import ScrollTransformWrapper, {ScrollTransformWrapperRefTypes} from "./components/ScrollTransformWrapper";
 import useScrollPercent from "./useScrollPercent";
 import _ from 'lodash';
 import getCalculatedValueByPercent from "./lib/getCalculatedValueByPercent";
@@ -7,7 +7,7 @@ import PicTextSection from "./PicTextSection";
 import useWindowSize from "./useWindowResize";
 
 export default function SquareSection() {
-    const wrapperRef = useRef<any>();
+    const wrapperRef = useRef<ScrollTransformWrapperRefTypes>();
 
     const bgRef = useRef<any>();
 

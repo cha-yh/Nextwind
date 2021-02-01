@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import ScrollTransformWrapper, { ScrollTransformWrapperRefTypes } from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
 import useWindowSize from './useWindowResize';
 
 export default function PicTextSection() {
-    const ref = useRef();
+    const ref = useRef<ScrollTransformWrapperRefTypes>();
     const [percent] = useScrollPercent(ref);
 
     const [imageSize, setImageSize] = useState(1);

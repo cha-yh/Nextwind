@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollTransformWrapper from './components/ScrollTransformWrapper';
+import ScrollTransformWrapper, { ScrollTransformWrapperRefTypes } from './components/ScrollTransformWrapper';
 import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useScrollPercent from './useScrollPercent';
 import useWindowSize from './useWindowResize';
 
 export default function CardSection() {
-    const ref = useRef();
-    const containerRef = useRef<any>();
+    const ref = useRef<ScrollTransformWrapperRefTypes>();
+    const containerRef = useRef<HTMLDivElement>();
     const [isNarrow, setIsNarrow] = useState(true);
 
     const [percent] = useScrollPercent(ref);
