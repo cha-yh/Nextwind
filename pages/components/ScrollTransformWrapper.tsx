@@ -7,13 +7,13 @@ export type ScrollTransformWrapperRefTypes = {
 };
 
 type Props = {
-    height: string;
-    bgColor: string;
+    height?: string;
+    bgColor?: string;
     children: React.ReactNode
 }
 type PropTypes = Props;
 
-const ScrollTransformWrapper = React.forwardRef<ScrollTransformWrapperRefTypes, PropTypes>(({height, bgColor, children}, ref) => {
+const ScrollTransformWrapper = React.forwardRef<ScrollTransformWrapperRefTypes, PropTypes>(({height = '100%', bgColor = 'black', children}, ref) => {
     const sectionRef = useRef<HTMLDivElement>();
     const stickyRef = useRef<HTMLDivElement>();
 
