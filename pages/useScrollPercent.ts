@@ -1,8 +1,9 @@
 import { MutableRefObject, useEffect, useState } from "react";
 import { ScrollTransformWrapperRefTypes } from "./components/ScrollTransformWrapper";
 
-const THRESHOLD = 0.5;
-export default function useScrollPercent(wrapperRef: MutableRefObject<ScrollTransformWrapperRefTypes>) {
+export default function useScrollPercent(wrapperRef: MutableRefObject<ScrollTransformWrapperRefTypes>, threshold?: number) {
+    const THRESHOLD = [null, undefined].includes(threshold) ? 0.5 : threshold;
+    
     const [percent, setPercent] = useState(0);
 
     useEffect(() => {
