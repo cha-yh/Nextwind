@@ -45,7 +45,7 @@ export default function TransformSection2() {
             <div className="w-full h-full flex items-center justify-center py-40">
                 <div className="md:absolute flex flex-col-reverse md:flex-row items-center justify-center">
                     <p
-                        className="w-80 mt-10 md:mt-0 text-white transition-all duration-500"
+                        className="max-w-sm mt-10 md:mt-0 md: mr-10 text-white transition-all duration-500"
                         style={{
                             transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal * -1})`,
                             opacity: `${textOpacity}`

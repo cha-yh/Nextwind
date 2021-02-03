@@ -89,8 +89,8 @@ export default function SquareSection() {
                     style={{
                         transform: `matrix(1, 0, 0, 1, 0, ${textHorizontal})`,
                         opacity: textOpacity,
-                        width: '30%',
-                        minWidth: '320px'
+                        // width: '30%',
+                        maxWidth: '500px'
 
                     }}
                 >
@@ -133,7 +133,7 @@ export default function SquareSection() {
                     </div>
 
                     <p
-                        className="text-center text-white mt-10 w-96"
+                        className="text-center text-white mt-10 max-w-sm"
                         style={{
                             opacity: textOpacity2,
                         }}
