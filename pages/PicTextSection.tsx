@@ -36,7 +36,6 @@ export default function PicTextSection() {
         <ScrollTransformWrapper
             height="120vh"
             ref={ref}
-            bgColor="black"
         >
             <div className="container m-auto">
                 <div className="flex flex-col items-center justify-center py-40">

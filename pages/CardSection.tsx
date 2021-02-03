@@ -22,7 +22,6 @@ export default function CardSection() {
     }, [size.width])
     return (
         <ScrollTransformWrapper
-            bgColor="black"
             height='120vh'
             ref={ref}
         >

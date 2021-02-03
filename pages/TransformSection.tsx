@@ -41,7 +41,6 @@ export default function TransformSection2() {
         <ScrollTransformWrapper
             ref={wrapperRef}
             height='130vh'
-            bgColor="black"
         >
             <div className="w-full h-full flex items-center justify-center py-40">
                 <div className="md:absolute flex flex-col-reverse md:flex-row items-center justify-center">
