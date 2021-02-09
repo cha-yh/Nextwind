@@ -1,5 +1,6 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useWindowSize from './useWindowResize';
+import styles from './styles.module.css';
 
 export type ScrollTransformWrapperRefTypes = {
     readonly sectionWrapper: HTMLDivElement;
@@ -34,15 +35,15 @@ const ScrollTransformWrapper = React.forwardRef<ScrollTransformWrapperRefTypes, 
 
     return (
         <div
-            className="w-full"
+            className={styles.section}
             style={{
                 height: sectionHeight,
                 background: bgColor
             }}
             ref={sectionRef}
         >
-            <div className="md:sticky w-full md:h-screen h-full top-0" style={{background: bgColor}} ref={stickyRef}>
-                <div className="w-full h-full overflow-hidden relative">
+            <div className={styles.sticky} style={{background: bgColor}} ref={stickyRef}>
+                <div className={styles.fullBox}>
                     {children}
                 </div>
             </div>
