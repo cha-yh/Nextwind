@@ -9,6 +9,11 @@
   ],
   "author": "cha-yh",
   "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:publish": "rollup -c && tsc --emitDeclarationOnly && yarn publish"
+  },
   "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
