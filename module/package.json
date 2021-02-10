@@ -1,7 +1,7 @@
 {
   "name": "framed-animation-on-scroll",
-  "version": "1.0.1",
-  "description": "test",
+  "version": "1.0.2",
+  "description": "Framed animation on scroll for react",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
