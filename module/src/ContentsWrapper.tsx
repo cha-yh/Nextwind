@@ -2,7 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useWindowSize from './useWindowResize';
 import styles from './styles.module.css';
 
-export type ScrollTransformWrapperRefTypes = {
+export type ContentsWrapperRefTypes = {
     readonly sectionWrapper: HTMLDivElement;
     readonly stickyWrapper: HTMLDivElement;
 };
@@ -14,7 +14,7 @@ type Props = {
 }
 type PropTypes = Props;
 
-const ScrollTransformWrapper = React.forwardRef<ScrollTransformWrapperRefTypes, PropTypes>(({height = '100%', bgColor = 'black', children}, ref) => {
+const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({height = '100%', bgColor = 'black', children}, ref) => {
     const sectionRef = useRef<HTMLDivElement>();
     const stickyRef = useRef<HTMLDivElement>();
 
@@ -51,4 +51,4 @@ const ScrollTransformWrapper = React.forwardRef<ScrollTransformWrapperRefTypes, 
     )
 })
 
-export default ScrollTransformWrapper;
+export default ContentsWrapper;

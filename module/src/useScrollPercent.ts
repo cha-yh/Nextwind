@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useState } from "react";
-import { ScrollTransformWrapperRefTypes } from "./ScrollTransformWrapper";
+import { ContentsWrapperRefTypes } from "./ContentsWrapper";
 
-export default function useScrollPercent(wrapperRef: MutableRefObject<ScrollTransformWrapperRefTypes>, threshold?: number) {
+export default function useScrollPercent(wrapperRef: MutableRefObject<ContentsWrapperRefTypes>, threshold?: number) {
     const THRESHOLD = [null, undefined].includes(threshold) ? 0.5 : threshold;
     
     const [percent, setPercent] = useState(0);
@@ -27,7 +27,6 @@ export default function useScrollPercent(wrapperRef: MutableRefObject<ScrollTran
         const endY = startY + sectionHeight;
         const percent = Math.floor((currentY - startY + 1) / (endY - startY) * 100);
         setPercent(percent);
-
     }
 
     const handleIntersection = ([ entry ]) => {
