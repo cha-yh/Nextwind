@@ -1,3 +1,3 @@
-export { default as getWeightByPercentRange } from './getWeightByPercentRange';
+export { default as getWeightByProgress } from './getWeightByProgress';
 export { default as ContentsWrapper } from './ContentsWrapper';
-export { default as useScrollPercent } from './useScrollPercent';
+export { default as useScrollProgress } from './useScrollProgress';

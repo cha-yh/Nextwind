@@ -1,10 +1,10 @@
 import { MutableRefObject, useEffect, useState } from "react";
 import { ContentsWrapperRefTypes } from "./ContentsWrapper";
 
-export default function useScrollPercent(wrapperRef: MutableRefObject<ContentsWrapperRefTypes>, threshold?: number) {
+export default function useScrollProgress(wrapperRef: MutableRefObject<ContentsWrapperRefTypes>, threshold?: number) {
     const THRESHOLD = [null, undefined].includes(threshold) ? 0.5 : threshold;
     
-    const [percent, setPercent] = useState(0);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         let observer;
@@ -25,8 +25,8 @@ export default function useScrollPercent(wrapperRef: MutableRefObject<ContentsWr
         const currentY = window.pageYOffset;
         const startY = sectionOffsetY - (sectionHeight * THRESHOLD);
         const endY = startY + sectionHeight;
-        const percent = Math.floor((currentY - startY + 1) / (endY - startY) * 100);
-        setPercent(percent);
+        const progress = Math.floor((currentY - startY + 1) / (endY - startY) * 100);
+        setProgress(progress);
     }
 
     const handleIntersection = ([ entry ]) => {
@@ -37,5 +37,5 @@ export default function useScrollPercent(wrapperRef: MutableRefObject<ContentsWr
         }
     };
 
-    return [percent];
+    return [progress];
 }
