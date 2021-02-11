@@ -51,6 +51,58 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 ----
 <br>
 
+### Usage
+```js 
+import { useEffect, useRef, useState } from 'react';
+import { ContentsWrapper, getWeightByProgress, useScrollProgress } from 'framed-animation-on-scroll';
+
+function App() {
+  const ref = useRef();
+  const [progress] = useScrollProgress(ref, 0);
+
+  const [opacityValue, setOpacityValue] = useState(0);
+
+  useEffect(() => {
+    //in 10~30% progress, opacity value will change 0.5 to 1
+    setOpacityValue(getWeightByProgress(10, 30, progress, 0.5, 1).toFixed(3));
+  }, [progress])
+  return (
+    <div className="App">
+      <div style={{ position: "fixed", top: 0, left: 0, color: "white", zIndex: 999, fontSize: "30px" }}>Scroll progress in black section: {progress} %</div>
+
+      <div style={{ height: "100vh", width: "100%", background: "gray" }} />
+
+      {/* Usage */}
+      <ContentsWrapper
+        height="200vh"
+        ref={ref}
+      >
+        <div
+          style={{
+            width: 300, height: 300, padding: 20, margin: 50, background: "green", color: "white", fontSize: "20px",
+            opacity: opacityValue
+          }}
+        >
+          <p>sticky contents</p>
+          <p>in 10~30% progress, opacity value will change 0.5 to 1</p>
+          <p>value: {opacityValue}</p>
+        </div>
+      </ContentsWrapper>
+
+      <div style={{ height: "100vh", width: "100%", background: "gray" }} />
+    </div>
+  );
+}
+
+export default App;
+
+
+````
+![example](https://media4.giphy.com/media/nAY7v7WdzzB07TUVMG/giphy.gif)
+
+
+----
+<br>
 
 ## License
 This project is licensed under the terms of the
