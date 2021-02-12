@@ -51,7 +51,7 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 ----
 <br>
 
-### Usage
+## Usage
 ```js 
 import { useEffect, useRef, useState } from 'react';
 import { ContentsWrapper, getWeightByProgress, useScrollProgress } from 'framed-animation-on-scroll';
