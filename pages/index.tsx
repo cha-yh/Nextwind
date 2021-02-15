@@ -4,6 +4,7 @@ import CardSection from './CardSection';
 import ContactSection from './ContactSection';
 import HeroSection from './HeroSection';
 import Nav from './Nav';
+import NoneStickySection from './NoneStickySection';
 import PicTextSection from './PicTextSection';
 import SquareSection from './SquareSection';
 import TransformSection from './TransformSection';
@@ -49,6 +50,7 @@ export default function Home() {
             </button>
 
             <section><Element id="section1" className="h-full"><HeroSection /></Element></section>
+            <section><Element id=""><NoneStickySection /></Element></section>
             <section className="mb-48 md:mb-0"><Element id="textpic-section" className="h-full"><TransformSection /></Element></section>
             <section><Element id="square-section" className="h-full" ><SquareSection /></Element></section>
             <section><Element className="h-full" id="pictext-section"><PicTextSection /></Element></section>
