@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import ScrollTransformWrapper, {ScrollTransformWrapperRefTypes} from "./components/ScrollTransformWrapper";
-import useScrollPercent from "./useScrollPercent";
 import _ from 'lodash';
-import getCalculatedValueByPercent from "./lib/getCalculatedValueByPercent";
-import PicTextSection from "./PicTextSection";
 import useWindowSize from "./useWindowResize";
+import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
 
 export default function SquareSection() {
-    const wrapperRef = useRef<ScrollTransformWrapperRefTypes>();
+    const wrapperRef = useRef();
 
     const bgRef = useRef<any>();
 
-    const [percent] = useScrollPercent(wrapperRef);
+    const [percent] = useScrollProgress(wrapperRef);
 
     const initGridValue = [
         { w: 3, h: 3, x: -450, y: -517 },
@@ -35,7 +32,7 @@ export default function SquareSection() {
     const [dimmerOpacity, setDimmerOpacity] = useState(0);
 
     const upScaling = (percent: any) => {
-        const size = getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1
+        const size = getWeightByProgress(58, 75, percent, -10, -1) * -1
         bgRef.current.style.transform = `matrix(${size}, 0, 0, ${size}, 0, 0)`
     }
     const size = useWindowSize();
@@ -43,29 +40,29 @@ export default function SquareSection() {
         if (size.width > 768) {
 
             let temp = [...gridValue];
-            setTextOpacity(getCalculatedValueByPercent(50, 65, percent, -1, 0) * -1);
-            setTextHorizontal(getCalculatedValueByPercent(50, 65, percent, 0, 200) * -1);
-            setDimmerOpacity(getCalculatedValueByPercent(50, 65, percent, -0.4, 0) * -1);
+            setTextOpacity(getWeightByProgress(50, 65, percent, -1, 0) * -1);
+            setTextHorizontal(getWeightByProgress(50, 65, percent, 0, 200) * -1);
+            setDimmerOpacity(getWeightByProgress(50, 65, percent, -0.4, 0) * -1);
 
-            // setWholeSize(getCalculatedValueByPercent(58, 75, percent, -10, -1) * -1);
+            // setWholeSize(getWeightByProgress(58, 75, percent, -10, -1) * -1);
 
             temp = initGridValue.map(grid => {
                 return {
-                    w: getCalculatedValueByPercent(58, 75, percent, -1 * grid.w, -1) * -1,
-                    h: getCalculatedValueByPercent(58, 75, percent, -1 * grid.h, -1) * -1,
+                    w: getWeightByProgress(58, 75, percent, -1 * grid.w, -1) * -1,
+                    h: getWeightByProgress(58, 75, percent, -1 * grid.h, -1) * -1,
                     x: grid.x < 0
-                        ? getCalculatedValueByPercent(58, 75, percent, grid.x, 0)
-                        : getCalculatedValueByPercent(58, 75, percent, -1 * grid.x, 0) * -1,
+                        ? getWeightByProgress(58, 75, percent, grid.x, 0)
+                        : getWeightByProgress(58, 75, percent, -1 * grid.x, 0) * -1,
                     y: grid.y < 0
-                        ? getCalculatedValueByPercent(58, 75, percent, grid.y, 0)
-                        : getCalculatedValueByPercent(58, 75, percent, -1 * grid.y, 0) * -1,
+                        ? getWeightByProgress(58, 75, percent, grid.y, 0)
+                        : getWeightByProgress(58, 75, percent, -1 * grid.y, 0) * -1,
                 }
             })
             setGridValue(temp);
 
             requestAnimationFrame(() => upScaling(percent))
 
-            setTextOpacity2(getCalculatedValueByPercent(70, 80, percent));
+            setTextOpacity2(getWeightByProgress(70, 80, percent));
         } else {
             bgRef.current.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
             setGridValue(naturalGridValue);
@@ -78,12 +75,12 @@ export default function SquareSection() {
 
     }, [percent, size.width])
     return (
-        <ScrollTransformWrapper
+        <ContentsWrapper
             ref={wrapperRef}
             height='150vh'
         >
 
-            <div className="w-full h-full flex flex-col items-center justify-center py-40">
+            <div className="overflow-hidden relative w-full h-full flex flex-col items-center justify-center py-40">
                 <div
                     className="m-auto mb-20 md:mb-52 mt-10 md:absolute z-20 text-white text-center"
                     style={{
@@ -142,7 +139,7 @@ export default function SquareSection() {
                         </p>
                 </div>
             </div>
-        </ScrollTransformWrapper>
+        </ContentsWrapper>
 
     )
 }

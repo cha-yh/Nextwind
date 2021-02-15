@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollTransformWrapper, { ScrollTransformWrapperRefTypes } from './components/ScrollTransformWrapper';
-import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
-import useScrollPercent from './useScrollPercent';
+import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
 import useWindowSize from './useWindowResize';
 
 const TITLE_INIT_SIZE = 1.5;
 
 export default function ContactSection() {
-    const ref = useRef<ScrollTransformWrapperRefTypes>();
-    const [percent] = useScrollPercent(ref);
+    const ref = useRef();
+    const [percent] = useScrollProgress(ref);
 
     const [titleSize, setTitleSize] = useState(TITLE_INIT_SIZE);
     const [contentsOpct, setContentsOpct] = useState(0);
@@ -18,9 +16,9 @@ export default function ContactSection() {
 
     useEffect(() => {
         if(width > 768) {
-            const weight1 = getCalculatedValueByPercent(0, 20, percent);
-            const weight2 = getCalculatedValueByPercent(10, 25, percent);
-            const weight3 = getCalculatedValueByPercent(25, 40, percent);
+            const weight1 = getWeightByProgress(0, 20, percent);
+            const weight2 = getWeightByProgress(10, 25, percent);
+            const weight3 = getWeightByProgress(25, 40, percent);
             setTitleSize(TITLE_INIT_SIZE - weight1 * (TITLE_INIT_SIZE - 1));
             setContentsOpct(weight2);
             setMapOpct(weight3);
@@ -32,7 +30,7 @@ export default function ContactSection() {
     }, [percent, width])
 
     return (
-        <ScrollTransformWrapper
+        <ContentsWrapper
             ref={ref}
             bgColor="#0e0d0d"
             height="100vh"
@@ -62,7 +60,7 @@ export default function ContactSection() {
                         style={{ opacity: mapOpct }}
                     >
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.2624446314835!2d126.94931371558664!3d37.47813273694335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f8a349ded25%3A0xe009a341d69d0885!2z6rSA7JWF6rWs7LKt!5e0!3m2!1sko!2skr!4v1609845726909!5m2!1sko!2skr"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.2045638779937!2d-122.4120096844066!3d37.808677217980666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808580fc8bb3211d%3A0xbaf631600de6b39e!2z7ZS87Ja0IDM5!5e0!3m2!1sko!2skr!4v1613129945662!5m2!1sko!2skr"
                             width="100%" height="400"
                             frameBorder="0" style={{ border: 0 }} allowFullScreen aria-hidden="false" tabIndex={0}
                         >
@@ -71,6 +69,6 @@ export default function ContactSection() {
                 </div>
             </div>
 
-        </ScrollTransformWrapper>
+        </ContentsWrapper>
     )
 }

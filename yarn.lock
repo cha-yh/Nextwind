@@ -1718,6 +1718,11 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+framed-animation-on-scroll@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/framed-animation-on-scroll/-/framed-animation-on-scroll-1.0.5.tgz#2dbbf233ea39a98ad3cdc6da2edb8873e0e4107e"
+  integrity sha512-QckmGXC4p1z3FlPI388QnX2v63bXJgoaGuExnzqi/ky0d36kcuXHxb66XNWTtwzwGUKmtubcn7iEyt3mKn4OKw==
+
 from2@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/from2/-/from2-2.3.0.tgz#8bfb5502bde4a4d36cfdeea007fcca21d7e382af"
@@ -2643,6 +2648,11 @@ next@10.0.4:
     webpack-sources "1.4.3"
   optionalDependencies:
     sharp "0.26.2"
+
+nextwind-test-module@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/nextwind-test-module/-/nextwind-test-module-0.1.2.tgz#716b71fcd2a5067b781eba951a2cc384f5e6c891"
+  integrity sha512-YKwBqDGiaTdPusdb+BH+rygcKuEKP9n1javUNmBTmi3ETmigiTmk0bnLu21YgCaJpFl7l801tH3ucUKaJfb4qA==
 
 node-abi@^2.7.0:
   version "2.19.3"

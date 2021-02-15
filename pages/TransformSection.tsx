@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollTransformWrapper, { ScrollTransformWrapperRefTypes } from './components/ScrollTransformWrapper';
-import useScrollPercent from './useScrollPercent';
-import { Element } from 'react-scroll';
-import getCalculatedValueByPercent from './lib/getCalculatedValueByPercent';
 import useWindowSize from './useWindowResize';
 
-export default function TransformSection2() {
-    const wrapperRef = useRef<ScrollTransformWrapperRefTypes>();
+import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
 
-    const [percent] = useScrollPercent(wrapperRef);
+export default function TransformSection2() {
+    const wrapperRef = useRef();
+
+    const [progress] = useScrollProgress(wrapperRef);
 
     const [imgageHorizontal, setImageHorizontal] = useState(0);
     const [imageSize, setImageSize] = useState(1);
@@ -19,15 +17,15 @@ export default function TransformSection2() {
     const size = useWindowSize();
     useEffect(() => {
         if(size.width > 768) {
-            const textOpct = getCalculatedValueByPercent(0, 40, percent);
+            const textOpct = getWeightByProgress(0, 40, progress);
             setTextOpacity(textOpct);
-            setTextHorizontal(getCalculatedValueByPercent(0, 50, percent, -100, 0));
+            setTextHorizontal(getWeightByProgress(0, 50, progress, -100, 0));
     
-            setImageSize(getCalculatedValueByPercent(0, 20, percent, 0.8));
-            setImageOpacity(getCalculatedValueByPercent(0, 20, percent));
-            setImageHorizontal(getCalculatedValueByPercent(0, 20, percent, -10, 0));
+            setImageSize(getWeightByProgress(0, 20, progress, 0.8));
+            setImageOpacity(getWeightByProgress(0, 20, progress));
+            setImageHorizontal(getWeightByProgress(0, 20, progress, -10, 0));
     
-            console.log(`currentY: ${percent}%`);
+            console.log(`currentY: ${progress}%`);
         } else {
             setTextOpacity(1);
             setTextHorizontal(0);
@@ -35,10 +33,10 @@ export default function TransformSection2() {
             setImageOpacity(1);
             setImageHorizontal(0);
         }
-    }, [percent, size.width])
+    }, [progress, size.width])
 
     return (
-        <ScrollTransformWrapper
+        <ContentsWrapper
             ref={wrapperRef}
             height='130vh'
         >
@@ -64,6 +62,6 @@ export default function TransformSection2() {
                     />
                 </div>
             </div>
-        </ScrollTransformWrapper>
+        </ContentsWrapper>
     )
 }
