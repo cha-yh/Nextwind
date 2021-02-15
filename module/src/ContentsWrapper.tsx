@@ -17,11 +17,31 @@ type PropTypes = Props;
 const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({height = '100%', bgColor = 'black', children}, ref) => {
     const sectionRef = useRef<HTMLDivElement>();
     const stickyRef = useRef<HTMLDivElement>();
+    const childrenRef = useRef<HTMLDivElement>();
 
     const [sectionHeight, setSectionHeight] = useState(height);
+    const [stickyHeight, setStickyHeight] = useState('100%');
     const size = useWindowSize();
+
     useEffect(() => {
-        setSectionHeight(window.innerWidth > 768 ? height : '100%');
+        const childrenHeight = childrenRef.current.clientHeight;
+        const viewPortWidth = size.width;
+        const viewPortHeight = size.height;
+        const isWide = viewPortWidth > 768;
+        const isContentsTaller = childrenHeight > viewPortHeight;
+
+        if(!isContentsTaller) {
+            setSectionHeight(height);
+            setStickyHeight(height);
+        } else {
+            if(isWide) {
+                setSectionHeight(height);
+                setStickyHeight('100vh');
+            } else {
+                setSectionHeight('100%');
+                setStickyHeight('100%');
+            }
+        }
     }, [size])
 
     useImperativeHandle(ref, () => ({
@@ -42,8 +62,14 @@ const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({h
             }}
             ref={sectionRef}
         >
-            <div className={styles.sticky} style={{background: bgColor}} ref={stickyRef}>
-                <div className={styles.fullBox}>
+            <div 
+                ref={stickyRef}
+                className={styles.sticky} 
+                style={{
+                    height: stickyHeight
+                }}
+            >
+                <div className={styles.fullBox} ref={childrenRef}>
                     {children}
                 </div>
             </div>

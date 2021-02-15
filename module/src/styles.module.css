@@ -2,19 +2,17 @@
     width: 100%;
 }
 .section .sticky {
+    background: inherit;
     width: 100%;
     height: 100%;
-    top: 0px;
 }
 .section .sticky .fullBox {
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    position: relative;
 }
 @media (min-width: 768px) {
     .section .sticky {
         position: sticky;
-        height: 100vh;
+        top: 0px;
     }
 }
