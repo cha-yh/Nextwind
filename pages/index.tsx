@@ -50,7 +50,7 @@ export default function Home() {
             </button>
 
             <section><Element id="section1" className="h-full"><HeroSection /></Element></section>
-            <section><Element id=""><NoneStickySection /></Element></section>
+            {/* <section><Element id=""><NoneStickySection /></Element></section> */}
             <section className="mb-48 md:mb-0"><Element id="textpic-section" className="h-full"><TransformSection /></Element></section>
             <section><Element id="square-section" className="h-full" ><SquareSection /></Element></section>
             <section><Element className="h-full" id="pictext-section"><PicTextSection /></Element></section>
