@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Element } from 'react-scroll';
-import useWindowSize from './useWindowResize';
+import useWindowSize from '../module/src/useWindowResize';
 
 const THRESHOLD = 0.5;
 

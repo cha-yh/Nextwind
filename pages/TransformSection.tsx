@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useWindowSize from './useWindowResize';
+import useWindowSize from '../module/src/useWindowResize';
 
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
 

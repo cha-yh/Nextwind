@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
-import useWindowSize from './useWindowResize';
+import useWindowSize from '../module/src/useWindowResize';
 
 export default function PicTextSection() {
     const ref = useRef();
