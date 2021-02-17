@@ -28,7 +28,7 @@ const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({h
         const viewPortWidth = size.width;
         const viewPortHeight = size.height;
         const isWide = viewPortWidth > 768;
-        const isContentsTaller = childrenHeight > viewPortHeight;
+        const isContentsTaller = childrenHeight >= viewPortHeight;
 
         if(!isContentsTaller) {
             setSectionHeight(height);
