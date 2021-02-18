@@ -3,75 +3,74 @@ import useWindowSize from './useWindowResize';
 import styles from './styles.module.css';
 
 export type ContentsWrapperRefTypes = {
-    readonly sectionWrapper: HTMLDivElement;
-    readonly stickyWrapper: HTMLDivElement;
+    readonly wrapperElement: HTMLDivElement;
+    readonly contentElement: HTMLDivElement;
 };
 
 type Props = {
     height?: string;
+    contentHeight?: string;
     bgColor?: string;
+    isSticky?: boolean;
     children: React.ReactNode
 }
 type PropTypes = Props;
 
-const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({height = '100%', bgColor = 'black', children}, ref) => {
-    const sectionRef = useRef<HTMLDivElement>();
-    const stickyRef = useRef<HTMLDivElement>();
-    const childrenRef = useRef<HTMLDivElement>();
+const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({height = '120vh', contentHeight = '100vh', bgColor = 'black', isSticky = true, children}, ref) => {
+    const wrapperRef = useRef<HTMLDivElement>();
+    const contentRef = useRef<HTMLDivElement>();
 
-    const [sectionHeight, setSectionHeight] = useState(height);
-    const [stickyHeight, setStickyHeight] = useState('100%');
+    const [wrapperHeight, setWrapperHeight] = useState(height);
+    const [_contentHeight, setContentHeight] = useState(contentHeight);
     const size = useWindowSize();
 
     useEffect(() => {
-        const childrenHeight = childrenRef.current.clientHeight;
+        const stickyHeight = contentRef.current.clientHeight;
         const viewPortWidth = size.width;
         const viewPortHeight = size.height;
         const isWide = viewPortWidth > 768;
-        const isContentsTaller = childrenHeight >= viewPortHeight;
+        const isContentsTaller = stickyHeight >= viewPortHeight;
 
         if(!isContentsTaller) {
-            setSectionHeight(height);
-            setStickyHeight(height);
+            setWrapperHeight(height);
+            setContentHeight(height);
         } else {
             if(isWide) {
-                setSectionHeight(height);
-                setStickyHeight('100vh');
+                setWrapperHeight(height);
+                setContentHeight(contentHeight);
             } else {
-                setSectionHeight('100%');
-                setStickyHeight('100%');
+                setWrapperHeight('100%');
+                setContentHeight('100%');
             }
         }
     }, [size])
 
     useImperativeHandle(ref, () => ({
-        get sectionWrapper() {
-            return sectionRef.current;
+        get wrapperElement() {
+            return wrapperRef.current;
         },
-        get stickyWrapper() {
-            return stickyRef.current;
+        get contentElement() {
+            return contentRef.current;
         }
     }));
 
     return (
         <div
-            className={styles.section}
+            className={styles.wrapper}
             style={{
-                height: sectionHeight,
+                height: wrapperHeight,
                 background: bgColor
             }}
-            ref={sectionRef}
+            ref={wrapperRef}
         >
             <div 
-                ref={stickyRef}
-                className={styles.sticky} 
+                ref={contentRef}
+                className={`${styles.content} ${isSticky ? styles.sticky : ""}`} 
                 style={{
-                    height: stickyHeight
+                    height: _contentHeight
                 }}
             >
-                <div className={styles.fullBox} ref={childrenRef}>
-                    {children}
-                </div>
+                {children}
             </div>
         </div>
     )

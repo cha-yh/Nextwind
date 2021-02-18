@@ -1,17 +1,17 @@
-.section {
+.wrapper {
     width: 100%;
 }
-.section .sticky {
+.wrapper .content {
     background: inherit;
     width: 100%;
     height: 100%;
 }
-.section .sticky .fullBox {
+.wrapper .content .fullBox {
     width: 100%;
     height: 100%;
 }
 @media (min-width: 768px) {
-    .section .sticky {
+    .wrapper .sticky {
         position: sticky;
         top: 0px;
     }
