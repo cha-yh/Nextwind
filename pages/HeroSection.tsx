@@ -45,8 +45,8 @@ export default function HeroSection() {
             <div className="w-full absolute top-0 left-0 opacity-40 bg-black" style={{ height: 'calc(100vh - 56px)' }} />
 
             <div className="w-full h-full absolute top-0 left-0 flex flex-col items-center justify-center text-white" >
-                <h1 className="text-4xl mb-5">Title title</h1>
-                <p className="text-center px-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, quisquam?</p>
+                <h1 className="text-4xl mb-5">Framed-animation-on-scroll</h1>
+                <p className="text-center">Examples for demo</p>
             </div>
         </div>
     )
