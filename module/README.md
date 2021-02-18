@@ -13,6 +13,11 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 
 <br>
 
+## Update `ContentWrapper` on (1.1.0)
+ - Add props(isSticky, contentHeight)
+ - Improve inner structure
+ - Change default value of height prop ("100%" to "120vh")
+
 ## Use
 ### `ContentsWrapper`
 : It's a wrapper component for letting children component stick in viewport.
@@ -20,8 +25,10 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 |Attribute|Description|Type|Default value|
 |------|---|-------|---|
 |ref|ref|MutableRefObject&lt;ContentsWrapperRefTypes&gt;|NOT_NULL|
-|height|The height of the box that wrap a sticky box.|string &#124; undefined|"100%"|
+|height|The height of wrapper|string &#124; undefined|"120vh"|
 |bgColor|The background color of ContentsWrapper component|string &#124; undefined|"black"|
+|isSticky|The boolean value whether content is sticky or not|boolean &#124; undefined|true|
+|contentHeight|The height of content in wrapper|string &#124; undefined|"100vh"|
 
 ----
 <br>
