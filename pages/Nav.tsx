@@ -28,6 +28,14 @@ export default function Nav() {
                         <li className="mx-2">
                             <Link 
                                 className="cursor-pointer hover:text-green-300"
+                                activeClass="text-green-500" to="animated-section" spy={true} smooth={true} offset={0} duration={200}
+                            >
+                                animated
+                            </Link>
+                        </li>
+                        <li className="mx-2">
+                            <Link 
+                                className="cursor-pointer hover:text-green-300"
                                 activeClass="text-green-500" to="square-section" spy={true} smooth={true} offset={0} duration={200}
                             >
                                 square
