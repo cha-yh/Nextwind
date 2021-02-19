@@ -4,27 +4,31 @@ This is a framed animation on scroll library for React.
 Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238%7Cs3as1Krbs-dc_mtid_209254jz40384_pcrid_472722877628_pgrid_119804248508_&cid=wwa-kr-kwgo-iphone-Brand-Announce-General-)
 
 ## Core
-`ContentsWrapper` makes your component be sticky on viewport in section. And `useScrollProgress` get scroll progress that how deep your component is in section. You can make framed-animation by the progress. And also you can control progress range for animation by `getWeightByProgress`.
+`ContentsWrapper` makes your component be able to measure scroll progress in section by `useScrollProgress`. It calculates scroll progress that how deep your component is in section. You can make framed-animation by the progress. And also you can control progress range for animation by `getWeightByProgress`.
 
 ## How it works
 * Detect the viewport is in a section.
-* Measure the progress of scroll in section with threshold value.
-* Make interaction in progress range you want.
+* Measure the progress of scroll in a section with threshold value.
+* Make a interaction in the progress range you want.
 
 <br>
 
-## Update `ContentWrapper` on (1.1.0)
- - Add props(isSticky, contentHeight)
- - Improve inner structure
- - Change default value of height prop ("100%" to "120vh")
+## Update Notes
+ - v1.1.1
+    - Remove function that automatically resize height of `ContentWrapper`
+    - Fix 'undefined ref' error of `useScrollProgress`
+ - v1.1.0 - Update `ContentWrapper`
+    - Add props(isSticky, contentHeight)
+    - Improve inner structure
+    - Change default value of height prop ("100%" to "120vh")
 
 ## Use
 ### `ContentsWrapper`
-: It's a wrapper component for letting children component stick in viewport.
+: It's necessary to get customized Ref(type: ContentsWrapperRefTypes) for using `useScrollProgress`.
 
 |Attribute|Description|Type|Default value|
 |------|---|-------|---|
-|ref|ref|MutableRefObject&lt;ContentsWrapperRefTypes&gt;|NOT_NULL|
+|ref|Ref|MutableRefObject&lt;ContentsWrapperRefTypes&gt;|NOT_NULL|
 |height|The height of wrapper|string &#124; undefined|"120vh"|
 |bgColor|The background color of ContentsWrapper component|string &#124; undefined|"black"|
 |isSticky|The boolean value whether content is sticky or not|boolean &#124; undefined|true|
@@ -34,11 +38,11 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 <br>
 
 ### `useScrollProgress`
-: It's for calculating the progress by how deep scroll is in a section with threshold value. And handling scroll event listner.
+: It handles scroll event listner. It's for calculating the progress by how deep scroll is in a section with threshold value.
 
 |Attribute|Description|Type|Default value|
 |------|---|-------|---|
-|ref|ref|MutableRefObject&lt;ContentsWrapperRefTypes&gt;|NOT_NULL|
+|ref|Ref|MutableRefObject&lt;ContentsWrapperRefTypes&gt;|NOT_NULL|
 |threshold|Specifying a ratio of intersection area to total bounding box area for the observed target|number(0~1) &#124; undefined|0.5|
 
 ----
