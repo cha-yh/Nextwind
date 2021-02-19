@@ -21,13 +21,17 @@ export default function useScrollProgress(wrapperRef: MutableRefObject<ContentsW
 
     const handleScrollInSection = () => {
         if(wrapperRef) {
-            const sectionHeight = wrapperRef.current.wrapperElement.getBoundingClientRect().height;
-            const sectionOffsetY = wrapperRef.current.wrapperElement.offsetTop;
-            const currentY = window.pageYOffset;
-            const startY = sectionOffsetY - (sectionHeight * THRESHOLD);
-            const endY = startY + sectionHeight;
-            const progress = Math.floor((currentY - startY + 1) / (endY - startY) * 100);
-            setProgress(progress);
+            if(wrapperRef.current) {
+                if(wrapperRef.current.wrapperElement) {
+                    const sectionHeight = wrapperRef.current.wrapperElement.getBoundingClientRect().height;
+                    const sectionOffsetY = wrapperRef.current.wrapperElement.offsetTop;
+                    const currentY = window.pageYOffset;
+                    const startY = sectionOffsetY - (sectionHeight * THRESHOLD);
+                    const endY = startY + sectionHeight;
+                    const progress = Math.floor((currentY - startY + 1) / (endY - startY) * 100);
+                    setProgress(progress);
+                }
+            }
         }
     }
 
