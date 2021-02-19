@@ -20,31 +20,6 @@ const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({h
     const wrapperRef = useRef<HTMLDivElement>();
     const contentRef = useRef<HTMLDivElement>();
 
-    const [wrapperHeight, setWrapperHeight] = useState(height);
-    const [_contentHeight, setContentHeight] = useState(contentHeight);
-    const size = useWindowSize();
-
-    useEffect(() => {
-        const stickyHeight = contentRef.current.clientHeight;
-        const viewPortWidth = size.width;
-        const viewPortHeight = size.height;
-        const isWide = viewPortWidth > 768;
-        const isContentsTaller = stickyHeight >= viewPortHeight;
-
-        if(!isContentsTaller) {
-            setWrapperHeight(height);
-            setContentHeight(height);
-        } else {
-            if(isWide) {
-                setWrapperHeight(height);
-                setContentHeight(contentHeight);
-            } else {
-                setWrapperHeight('100%');
-                setContentHeight('100%');
-            }
-        }
-    }, [size])
-
     useImperativeHandle(ref, () => ({
         get wrapperElement() {
             return wrapperRef.current;
@@ -58,7 +33,7 @@ const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({h
         <div
             className={styles.wrapper}
             style={{
-                height: wrapperHeight,
+                height: height,
                 background: bgColor
             }}
             ref={wrapperRef}
@@ -67,7 +42,7 @@ const ContentsWrapper = React.forwardRef<ContentsWrapperRefTypes, PropTypes>(({h
                 ref={contentRef}
                 className={`${styles.content} ${isSticky ? styles.sticky : ""}`} 
                 style={{
-                    height: _contentHeight
+                    height: contentHeight
                 }}
             >
                 {children}
