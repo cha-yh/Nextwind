@@ -1,26 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
+import useNarrow from '../lib/useNarrow';
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
-import useWindowSize from '../module/src/useWindowResize';
 
 export default function CardSection() {
     const ref = useRef();
     const containerRef = useRef<HTMLDivElement>();
-    const [isNarrow, setIsNarrow] = useState(true);
-
     const [percent] = useScrollProgress(ref);
     
-    const size = useWindowSize();
-
-    useEffect(() => {
-        if(size.width > 768) {
-            setIsNarrow(false);
-        } else {
-            setIsNarrow(true)
-        }
-    }, [size.width])
+    const isNarrow = useNarrow();
     return (
         <ContentsWrapper
-            height='120vh'
+            height={isNarrow ? '100%' : '120vh'}
+            contentHeight={isNarrow ? '100%' : '100vh'}
             ref={ref}
         >
 

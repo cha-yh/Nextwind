@@ -53,11 +53,11 @@ export default function Home() {
             <section><Element id="section1" ><HeroSection /></Element></section>
             {/* <section><Element id=""><NoneStickySection /></Element></section> */}
             <section className="mb-48 md:mb-0"><Element id="textpic-section" ><TransformSection /></Element></section>
-            <section><Element id="animated-section"><FramedAnimationSection /></Element></section>
-            <section><Element id="square-section"><SquareSection /></Element></section>
-            <section><Element id="pictext-section"><PicTextSection /></Element></section>
-            <section><Element id="cards-section"><CardSection /></Element></section>
-            <section><Element id="contact-section"><ContactSection /></Element></section>
+            <section className="mb-48 md:mb-0"><Element id="animated-section"><FramedAnimationSection /></Element></section>
+            <section className="mb-48 md:mb-0"><Element id="square-section"><SquareSection /></Element></section>
+            <section className="mb-48 md:mb-0"><Element id="pictext-section"><PicTextSection /></Element></section>
+            <section className="mb-48 md:mb-0"><Element id="cards-section"><CardSection /></Element></section>
+            <section className="mb-48 md:mb-0"><Element id="contact-section"><ContactSection /></Element></section>
             <footer className="w-full py-20 bg-gray-100">
                 <div className="container m-auto">
                     <div className="flex flex-col items-center justify-center">

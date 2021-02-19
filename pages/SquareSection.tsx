@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import _ from 'lodash';
 import useWindowSize from "../module/src/useWindowResize";
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
+import useNarrow from "../lib/useNarrow";
 
 export default function SquareSection() {
     const wrapperRef = useRef();
@@ -36,8 +37,11 @@ export default function SquareSection() {
         bgRef.current.style.transform = `matrix(${size}, 0, 0, ${size}, 0, 0)`
     }
     const size = useWindowSize();
+
+    const isNarrow = useNarrow();
+    
     useEffect(() => {
-        if (size.width > 768) {
+        if (!isNarrow) {
 
             let temp = [...gridValue];
             setTextOpacity(getWeightByProgress(50, 65, percent, -1, 0) * -1);
@@ -73,11 +77,12 @@ export default function SquareSection() {
         }
 
 
-    }, [percent, size.width])
+    }, [percent, isNarrow])
     return (
         <ContentsWrapper
             ref={wrapperRef}
-            height='150vh'
+            height={isNarrow ? "100%" : "150vh"}
+            contentHeight={isNarrow ? "100%" : "100vh"}
         >
 
             <div className="overflow-hidden relative w-full h-full flex flex-col items-center justify-center py-40">

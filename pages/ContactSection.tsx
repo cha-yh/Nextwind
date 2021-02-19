@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useNarrow from '../lib/useNarrow';
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
 import useWindowSize from '../module/src/useWindowResize';
 
@@ -10,12 +11,11 @@ export default function ContactSection() {
 
     const [titleSize, setTitleSize] = useState(TITLE_INIT_SIZE);
     const [contentsOpct, setContentsOpct] = useState(0);
-    const [mapOpct, setMapOpct] = useState(0);
-
-    const {width} = useWindowSize();
+    const [mapOpct, setMapOpct] = useState(0);    
+    const isNarrow = useNarrow();
 
     useEffect(() => {
-        if(width > 768) {
+        if(!isNarrow) {
             const weight1 = getWeightByProgress(0, 20, percent);
             const weight2 = getWeightByProgress(10, 25, percent);
             const weight3 = getWeightByProgress(25, 40, percent);
@@ -27,13 +27,14 @@ export default function ContactSection() {
             setContentsOpct(1)
             setMapOpct(1)
         }
-    }, [percent, width])
+    }, [percent, isNarrow])
 
     return (
         <ContentsWrapper
             ref={ref}
             bgColor="#0e0d0d"
-            height="100vh"
+            height={isNarrow ? "100%" : "100vh"}
+            contentHeight={isNarrow ? "100%" : "100vh"}
         >
             <div className="container m-auto text-white flex flex-col items-center justify-center py-40" >
                 <h2

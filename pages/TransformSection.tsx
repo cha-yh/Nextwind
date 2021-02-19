@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import useWindowSize from '../module/src/useWindowResize';
-
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
+import useNarrow from '../lib/useNarrow';
 
 export default function TransformSection2() {
     const wrapperRef = useRef();
-
     const [progress] = useScrollProgress(wrapperRef);
 
     const [imgageHorizontal, setImageHorizontal] = useState(0);
@@ -14,9 +12,9 @@ export default function TransformSection2() {
     const [textOpacity, setTextOpacity] = useState(1);
     const [textHorizontal, setTextHorizontal] = useState(0);
 
-    const size = useWindowSize();
+    const isNarrow = useNarrow();
     useEffect(() => {
-        if(size.width > 768) {
+        if(!isNarrow) {
             const textOpct = getWeightByProgress(0, 40, progress);
             setTextOpacity(textOpct);
             setTextHorizontal(getWeightByProgress(0, 50, progress, -100, 0));
@@ -24,8 +22,7 @@ export default function TransformSection2() {
             setImageSize(getWeightByProgress(0, 20, progress, 0.8));
             setImageOpacity(getWeightByProgress(0, 20, progress));
             setImageHorizontal(getWeightByProgress(0, 20, progress, -10, 0));
-    
-            console.log(`currentY: ${progress}%`);
+
         } else {
             setTextOpacity(1);
             setTextHorizontal(0);
@@ -33,12 +30,13 @@ export default function TransformSection2() {
             setImageOpacity(1);
             setImageHorizontal(0);
         }
-    }, [progress, size.width])
+    }, [progress, isNarrow])
 
     return (
         <ContentsWrapper
             ref={wrapperRef}
-            height='130vh'
+            height={isNarrow ? "100%" : "130vh"}
+            contentHeight={isNarrow ? "100%" : "100vh"}
         >
             <div className="w-full h-full flex items-center justify-center py-40">
                 <div className="md:absolute flex flex-col-reverse md:flex-row items-center justify-center">

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useNarrow from '../lib/useNarrow';
 import {ContentsWrapper, getWeightByProgress, useScrollProgress} from '../module/src';
 import useWindowSize from '../module/src/useWindowResize';
 
@@ -10,11 +11,11 @@ export default function PicTextSection() {
     const [imgOpacity, setImgOpacity] = useState(1);
     const [imgHorizontal, setImgHorizontal] = useState(0);
     const [textOpacity, setTextOpacity] = useState(1);
-    
-    const size = useWindowSize();
 
+    const isNarrow = useNarrow();
+    
     useEffect(() => {
-        if(size.width > 768) {
+        if(!isNarrow) {
             setTextOpacity(getWeightByProgress(40, 50, percent));
             setImgOpacity(getWeightByProgress(0, 30, percent, 0.2));
             setImageSize(getWeightByProgress(0, 20, percent, 0.7));
@@ -28,11 +29,12 @@ export default function PicTextSection() {
             setImageSize(1)
             setImgHorizontal(0)
         }
-    }, [percent, size.width])
+    }, [percent, isNarrow])
 
     return (
         <ContentsWrapper
-            height="120vh"
+            height={isNarrow ? "100%" : "120vh"}
+            contentHeight={isNarrow ? "100%" : "100vh"}
             ref={ref}
         >
             <div className="container m-auto">
