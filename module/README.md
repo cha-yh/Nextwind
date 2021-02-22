@@ -4,12 +4,12 @@ This is a framed animation on scroll library for React.
 Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238%7Cs3as1Krbs-dc_mtid_209254jz40384_pcrid_472722877628_pgrid_119804248508_&cid=wwa-kr-kwgo-iphone-Brand-Announce-General-)
 
 ## Core
-`ContentsWrapper` makes your component be able to measure scroll progress in section by `useScrollProgress`. It calculates scroll progress that how deep your component is in section. You can make framed-animation by the progress. And also you can control progress range for animation by `getWeightByProgress`.
+`ContentsWrapper` makes your component be able to measure scroll progress in the section by `useScrollProgress`. It calculates scroll progress that how deep your component is in section. You can make framed-animation by the progress. And also you can control the progress range for animation by `getWeightByProgress`.
 
 ## How it works
 * Detect the viewport is in a section.
-* Measure the progress of scroll in a section with threshold value.
-* Make a interaction in the progress range you want.
+* Measure the progress of scroll in a section with a threshold value.
+* Make an interaction in the progress range you want.
 
 <br>
 
@@ -31,14 +31,14 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 |ref|Ref|MutableRefObject&lt;ContentsWrapperRefTypes&gt;|NOT_NULL|
 |height|The height of wrapper|string &#124; undefined|"120vh"|
 |bgColor|The background color of ContentsWrapper component|string &#124; undefined|"black"|
-|isSticky|The boolean value whether content is sticky or not|boolean &#124; undefined|true|
+|isSticky|The boolean value whether the content is sticky or not|boolean &#124; undefined|true|
 |contentHeight|The height of content in wrapper|string &#124; undefined|"100vh"|
 
 ----
 <br>
 
 ### `useScrollProgress`
-: It handles scroll event listner. It's for calculating the progress by how deep scroll is in a section with threshold value.
+: It handles scroll event listener. It's for calculating the progress by how deep scroll is in a section with a threshold value.
 
 |Attribute|Description|Type|Default value|
 |------|---|-------|---|
@@ -54,7 +54,7 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 |Attribute|Description|Type|Default value|
 |------|---|-------|---|
 |start|The start point of progress that you want|number|NOT_NULL|
-|end|The end point of progress that you want|number|NOT_NULL|
+|end|The endpoint of progress that you want|number|NOT_NULL|
 |progress|The progress value from `useScrollProgress`|number|NOT_NULL|
 |min|The minimum weight value you want|number &#124; undefined|0|
 |max|The maximum weight value you want|number &#124; undefined|1|
