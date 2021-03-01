@@ -4,6 +4,7 @@ import CardSection from './CardSection';
 import ContactSection from './ContactSection';
 import FramedAnimationSection from './FramedAnimationSection';
 import HeroSection from './HeroSection';
+import Masking from './Masking';
 import Nav from './Nav';
 import NoneStickySection from './NoneStickySection';
 import PicTextSection from './PicTextSection';
@@ -51,6 +52,7 @@ export default function Home() {
             </button>
 
             <section><Element id="section1" ><HeroSection /></Element></section>
+            <section><Element id="" ><Masking /></Element></section>
             {/* <section><Element id=""><NoneStickySection /></Element></section> */}
             <section className="mb-48 md:mb-0"><Element id="textpic-section" ><TransformSection /></Element></section>
             <section className="mb-48 md:mb-0"><Element id="animated-section"><FramedAnimationSection /></Element></section>
