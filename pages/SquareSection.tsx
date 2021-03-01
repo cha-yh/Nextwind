@@ -127,10 +127,10 @@ export default function SquareSection() {
 
                         </figure>
                         <div className="grid grid-cols-2 grid-rows-2 gap-x-3 gap-y-4">
-                            <img src="/square1.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[0].w}, 0, 0, ${gridValue[0].h}, ${gridValue[0].x}, ${gridValue[0].y})` }} />
-                            <img src="/square2.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[1].w}, 0, 0, ${gridValue[1].h}, ${gridValue[1].x}, ${gridValue[1].y})` }} />
-                            <img src="/square3.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[2].w}, 0, 0, ${gridValue[2].h}, ${gridValue[2].x}, ${gridValue[2].y})` }} />
-                            <img src="/square4.jpeg" alt="" className="w-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[3].w}, 0, 0, ${gridValue[3].h}, ${gridValue[3].x}, ${gridValue[3].y})` }} />
+                            <img src="/square1.jpeg" alt="" className="w-20 h-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[0].w}, 0, 0, ${gridValue[0].h}, ${gridValue[0].x}, ${gridValue[0].y})` }} />
+                            <img src="/square2.jpeg" alt="" className="w-20 h-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[1].w}, 0, 0, ${gridValue[1].h}, ${gridValue[1].x}, ${gridValue[1].y})` }} />
+                            <img src="/square3.jpeg" alt="" className="w-20 h-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[2].w}, 0, 0, ${gridValue[2].h}, ${gridValue[2].x}, ${gridValue[2].y})` }} />
+                            <img src="/square4.jpeg" alt="" className="w-20 h-20 object-cover transition-transform duration-200" style={{ transform: `matrix(${gridValue[3].w}, 0, 0, ${gridValue[3].h}, ${gridValue[3].x}, ${gridValue[3].y})` }} />
                         </div>
                     </div>
 
