@@ -14,6 +14,8 @@ Motivated by [iPhone 12 pro page](https://www.apple.com/iphone-12-pro/?afid=p238
 <br>
 
 ## Update Notes
+ - v1.1.2
+    - Add fixed-point(6) of progress, weight value
  - v1.1.1
     - Remove function that automatically resize height of `ContentWrapper`
     - Fix 'undefined ref' error of `useScrollProgress`
