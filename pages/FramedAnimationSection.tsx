@@ -49,7 +49,7 @@ export default function FramedAnimationSection() {
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium aperiam porro exercitationem soluta, possimus sunt at quis repudiandae dolores magnam, non cumque dolorem in quisquam excepturi voluptates numquam quos molestiae voluptas ad. A autem obcaecati architecto voluptatibus rem. Iste, dolorum?</p>
                 </div>
                 <img
-                    className="max-w-lg"
+                    className="max-w-lg w-full"
                     src={`/cat_animated/ezgif-frame-${frameCount.toString().padStart(3, "0")}.jpg`}
                     alt=""
                 />
