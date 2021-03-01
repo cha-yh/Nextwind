@@ -6,5 +6,5 @@ export default function getWeightByProgress(start:number, end:number, progress:n
         ? min
         : calculatedValue > max
             ? max
-            : calculatedValue;
+            : Number(calculatedValue.toFixed(6));
 }

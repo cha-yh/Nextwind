@@ -28,7 +28,7 @@ export default function useScrollProgress(wrapperRef: MutableRefObject<ContentsW
                     const currentY = window.pageYOffset;
                     const startY = sectionOffsetY - (sectionHeight * THRESHOLD);
                     const endY = startY + sectionHeight;
-                    const progress = Math.floor((currentY - startY + 1) / (endY - startY) * 100);
+                    const progress = Number(((currentY - startY + 1) / (endY - startY) * 100).toFixed(6));
                     setProgress(progress);
                 }
             }
