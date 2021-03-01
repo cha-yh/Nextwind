@@ -27,7 +27,7 @@ export default function Nav() {
                     >
                         <img src="/nextwind_icon_white.svg" alt="" className="h-10 m-2"/>
                     </Link>
-                    {isNarrow
+                    {isNarrow && false
                         ?
                         <>
                             {visibleMobileMenu
