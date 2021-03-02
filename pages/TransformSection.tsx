@@ -20,7 +20,7 @@ export default function TransformSection2() {
             if(progress <= 40) {
                 textOpct = getWeightByProgress(0, 40, progress, -100, 100) * -1;
             } else {
-                textOpct = getWeightByProgress(80, 130, progress, -100, 100);
+                textOpct = getWeightByProgress(80, 120, progress, -100, 100);
             }
             setTextOpacity(textOpct);
 
@@ -55,7 +55,7 @@ export default function TransformSection2() {
                     >
                         <h3 className="text-2xl mb-4">Opacity Gradient</h3>
                         <p>Gradient weight: {textOpacity.toFixed(2)}</p>
-                        <p className="mb-3">Scroll progress: {progress.toFixed(2)}%</p>
+                        <p className="mb-3">Scroll progress (threshold: 0.5): {progress.toFixed(2)}%</p>
                         <p
                             className="text-sm"
                         >
