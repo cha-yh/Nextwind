@@ -31,7 +31,7 @@ export default function TransformSection2() {
             setImageHorizontal(getWeightByProgress(0, 20, progress, -10, 0));
 
         } else {
-            setTextOpacity(1);
+            setTextOpacity(-100);
             setTextHorizontal(0);
             setImageSize(1);
             setImageOpacity(1);
