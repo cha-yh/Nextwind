@@ -47,7 +47,7 @@ export default function FramedAnimationSection() {
                 <div className="max-w-lg mb-20 md:mr-10 md:mb-0 transition-all duration-500" style={{opacity: textOpacity, transform: `matrix(1,0,0,1,0,${textHorizontal / 10})`}}>
                     <h3 className="text-4xl mb-4">Animated Pictures</h3>
                     <p className="my-4 text-sm">In 20~100 progress of scroll, frame will be change from 1 to 36.</p>
-                    <p>Scroll progress (threshold: 0.5): {pg}%</p>
+                    <p>Scroll progress (threshold: 0.5): {pg.toFixed(2)}%</p>
                     <p>Frame: {frameCount}</p>
                 </div>
                 <img
