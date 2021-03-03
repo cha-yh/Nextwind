@@ -46,7 +46,9 @@ export default function FramedAnimationSection() {
             <div className="h-full container mx-auto flex flex-col md:flex-row items-center justify-center w-full text-white py-40">
                 <div className="max-w-lg mb-20 md:mr-10 md:mb-0 transition-all duration-500" style={{opacity: textOpacity, transform: `matrix(1,0,0,1,0,${textHorizontal / 10})`}}>
                     <h3 className="text-4xl mb-4">Animated Pictures</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium aperiam porro exercitationem soluta, possimus sunt at quis repudiandae dolores magnam, non cumque dolorem in quisquam excepturi voluptates numquam quos molestiae voluptas ad. A autem obcaecati architecto voluptatibus rem. Iste, dolorum?</p>
+                    <p className="my-4 text-sm">In 20~100 progress of scroll, frame will be change from 1 to 36.</p>
+                    <p>Scroll progress (threshold: 0.5): {pg}%</p>
+                    <p>Frame: {frameCount}</p>
                 </div>
                 <img
                     className="max-w-lg w-full"
