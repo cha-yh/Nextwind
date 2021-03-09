@@ -10,14 +10,30 @@ This is a interaction view page. The section of the page will be animated by how
 * Make interaction in some point of measured percent you want.
 
 ## Core
-> `ScrollTransformWrapper`
+> `ContentsWrapper`
 : It's wrapper component for letting children component stick in viewport.
 
-> `useScrollPercent`
+> `useScrollProgress`
 : It's for calculating the percent by how deep scroll is in and threshold value. And handling scroll event listner.
 
-> `getCalculatedValueByPercent`
+> `getWeightByProgress`
 : It's for calculating the value that you can use at interaction value(e.g: opacity value of css) by the percent range you want.
+
+----
+<br>
+
+## Demo
+You can check out the demo page at this
+[link](https://nextwind-rho.vercel.app/)
+
+----
+<br>
+
+## Published module in NPM
+[framed-animation-on-scroll](https://www.npmjs.com/package/framed-animation-on-scroll)
+
+----
+<br>
 
 ## License
 This project is licensed under the terms of the
